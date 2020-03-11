@@ -1,0 +1,1705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by XMLPrettyPrinter on 3/10/2020 from pathwayDesigner version.dll -->
+<sbml xmlns = "http://www.sbml.org/sbml/level2" level = "2" version = "1" xmlns:jd2 = "http://www.sys-bio.org/sbml/jd2">
+   <!--                     -->
+   <!--  Model Starts Here  -->
+   <!--                     -->
+   <model id = "">
+      <notes>
+         <body xmlns = "http://www.w3.org/1999/xhtml">
+            <p/>
+         </body>
+      </notes>
+      <annotation>
+         <jd2:PathwayDesignerLayout version = "2.0" MajorVersion = "4" MinorVersion = "4" BuildVersion = "54"
+                                    xmlns:jd2 = "http://www.sys-bio.org/sbml/jd2">
+            <jd2:header>
+               <jd2:VersionHeader PathwayVersion = "-1"/>
+               <jd2:ModelHeader Author = "Author not set" ModelVersion = "0.0" ModelTitle = ""/>
+               <jd2:TimeCourseDetails timeStart = "0" timeEnd = "10" numberOfPoints = "1000" selectionList = ""/>
+               <jd2:SteadyStateDetails selectionList = ""/>
+               <jd2:ModifierOptions enableModifierDecorations = "false" enableAutoAddModifiers = "true"/>
+               <jd2:TimeCourseNumerics deprecated = "True" BDFOrder = "5" AdamsOrder = "12" rtol = "1E-6"
+                                       atol = "1E-12" maxsteps = "10000" initstep = "0" maxstep = "0"
+                                       minstep = "0"/>
+               <jd2:SteadyStateNumerics deprecated = "True" MaxIterations = "100" relativeTolerance = "0.0001"/>
+               <jd2:TimeCourseSolverSettings>
+                  <jd2:listOfSettings solver = ""/>
+               </jd2:TimeCourseSolverSettings>
+               <jd2:SteadyStateSolverSettings>
+                  <jd2:listOfSettings solver = ""/>
+               </jd2:SteadyStateSolverSettings>
+            </jd2:header>
+            <jd2:JDGraphicsHeader BackGroundColor = "FFFFFFEF" NodeEdgeGapDistance = "20"/>
+            <jd2:listOfCompartments>
+               <jd2:compartment id = "compartment" size = "1" visible = "false">
+                  <jd2:boundingBox x = "0" y = "0" w = "0" h = "0"/>
+                  <jd2:membraneStyle thickness = "12" color = "FF00A5FF"/>
+                  <jd2:interiorStyle color = "FFEEEEFF"/>
+                  <jd2:text value = "compartment" visible = "true">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+               </jd2:compartment>
+            </jd2:listOfCompartments>
+            <jd2:listOfSpecies>
+               <jd2:species id = "S1" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.0829939827339898">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "529" y = "562"/>
+                  <jd2:displayNameVisible value = "S1" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S1" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S2" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.00427445838447142">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "863" y = "668"/>
+                  <jd2:displayNameVisible value = "S2" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S2" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S3" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.131320727598394">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "722" y = "588"/>
+                  <jd2:displayNameVisible value = "S3" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S3" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S4" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.490544081054721">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "331" y = "20"/>
+                  <jd2:displayNameVisible value = "S4" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S4" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S5" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.0376547831972931">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "36" y = "301"/>
+                  <jd2:displayNameVisible value = "S5" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S5" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S6" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.336414867486408">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "516" y = "636"/>
+                  <jd2:displayNameVisible value = "S6" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S6" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S7" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.524540884540333">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "153" y = "638"/>
+                  <jd2:displayNameVisible value = "S7" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S7" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S8" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.000334885529950926">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "673" y = "231"/>
+                  <jd2:displayNameVisible value = "S8" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S8" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S9" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.549377054017463">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "510" y = "480"/>
+                  <jd2:displayNameVisible value = "S9" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S9" visible = "true">
+                     <jd2:position rx = "13.645" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S10" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.375047545980766">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "428" y = "333"/>
+                  <jd2:displayNameVisible value = "S10" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S10" visible = "true">
+                     <jd2:position rx = "9.922" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S11" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.0680312879170209">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "314" y = "533"/>
+                  <jd2:displayNameVisible value = "S11" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S11" visible = "true">
+                     <jd2:position rx = "9.922" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S12" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.000682786564850941">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "147" y = "73"/>
+                  <jd2:displayNameVisible value = "S12" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S12" visible = "true">
+                     <jd2:position rx = "9.922" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S13" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.017083895049524">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "547" y = "49"/>
+                  <jd2:displayNameVisible value = "S13" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S13" visible = "true">
+                     <jd2:position rx = "9.922" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S14" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.312059075093545">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "130" y = "485"/>
+                  <jd2:displayNameVisible value = "S14" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S14" visible = "true">
+                     <jd2:position rx = "9.922" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S15" boundaryCondition = "false" compartment = "compartment" initialConcentration = "1.02840773395118">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "174" y = "312"/>
+                  <jd2:displayNameVisible value = "S15" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S15" visible = "true">
+                     <jd2:position rx = "9.922" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S_out" boundaryCondition = "false" compartment = "compartment" initialConcentration = "0.00465194079302778">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "304" y = "763"/>
+                  <jd2:displayNameVisible value = "S_out" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S_out" visible = "true">
+                     <jd2:position rx = "4.3392" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+               <jd2:species id = "S_in" boundaryCondition = "true" compartment = "compartment" initialConcentration = "8.28037812563085">
+                  <jd2:visible value = "true"/>
+                  <jd2:positionLocked value = "false"/>
+                  <jd2:sizeLocked value = "false"/>
+                  <jd2:boundingBox x = "101" y = "253"/>
+                  <jd2:displayNameVisible value = "" visible = "false"/>
+                  <jd2:displayValue visible = "false">
+                     <jd2:position rx = "0" ry = "0"/>
+                     <jd2:displayStatus value = "dvInitialValue"/>
+                     <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                  </jd2:displayValue>
+                  <jd2:text value = "S_in" visible = "true">
+                     <jd2:position rx = "8.4334" ry = "7.9258"/>
+                     <jd2:font fontName = "Arial" fontSize = "10" fontStyle = "" fontColor = "FF000000"/>
+                  </jd2:text>
+                  <jd2:complex id = "C2592840" displayName = "untitled" w = "48" h = "32"
+                               boundarySpeciesStyle = "bsShadow" boundaryStyleColor = "FF0000FF" captionPosition = "npCenter" captionVisible = "true"
+                               aliasBoundaryStyle = "abRectangle" aliasBoundaryColor = "FFFF0000" aliasBoundaryThickness = "3">
+                     <jd2:subunit shape = "suOvalSquare">
+                        <jd2:boundingBox rx = "0" ry = "0" w = "48" h = "32"/>
+                        <jd2:text value = "S13" visible = "false">
+                           <jd2:position rx = "12.5" ry = "8"/>
+                           <jd2:font fontName = "Arial" fontSize = "8" fontColor = "FF000000" fontStyle = ""/>
+                        </jd2:text>
+                        <jd2:color scheme = "gtVertLinear" startColor = "FFFFCC99" endColor = "FFFFFFFF"/>
+                        <jd2:edgeStyle color = "FFFF6600" thickness = "2" stroke = "dsSolid"/>
+                     </jd2:subunit>
+                  </jd2:complex>
+               </jd2:species>
+            </jd2:listOfSpecies>
+            <jd2:listOfReactions>
+               <jd2:reaction id = "r1" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S_in" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "S5" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S14" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "kf_J1*S_in*S5-kr_J1*S14"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J1" value = "0.690603064087263"/>
+                        <jd2:parameter id = "kr_J1" value = "0.690020517936982"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:edgeCenter x = "148" y = "379"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "125" y = "269" type = "substrate" speciesRef = "S_in"/>
+                           <jd2:pt x = "137.33" y = "327" type = "controlPoint"/>
+                           <jd2:pt x = "143.67" y = "370.5" type = "controlPoint"/>
+                           <jd2:pt x = "148" y = "379" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "60" y = "317" type = "substrate" speciesRef = "S5"/>
+                           <jd2:pt x = "114.83" y = "359.5" type = "controlPoint"/>
+                           <jd2:pt x = "143.67" y = "370.5" type = "controlPoint"/>
+                           <jd2:pt x = "148" y = "379" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "148" y = "379" type = "centerPoint"/>
+                           <jd2:pt x = "152.33" y = "387.5" type = "controlPoint"/>
+                           <jd2:pt x = "155.83" y = "413.5" type = "controlPoint"/>
+                           <jd2:pt x = "154" y = "501" type = "product" speciesRef = "S14"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r2" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S7" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S_out" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S2"/>
+                        <jd2:destinationReaction name = "r2" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "887" y = "684" type = "modifier" speciesRef = "S2"/>
+                              <jd2:pt x = "246.4" y = "725.6"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S2*kf_J2*S7/(1+S7)"/>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "177" y = "654" type = "substrate" speciesRef = "S7"/>
+                           <jd2:pt x = "220" y = "742.76" type = "controlPoint"/>
+                           <jd2:pt x = "263" y = "749.76" type = "controlPoint"/>
+                           <jd2:pt x = "328" y = "779" type = "product" speciesRef = "S_out"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r3" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S_out" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S7" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S4"/>
+                        <jd2:destinationReaction name = "r3" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "355" y = "36" type = "modifier" speciesRef = "S4"/>
+                              <jd2:pt x = "257.92" y = "666.25"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S4*kf_J3*S_out/(1+S_out)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J3" value = "0.466652286454309"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "328" y = "779" type = "substrate" speciesRef = "S_out"/>
+                           <jd2:pt x = "261" y = "654.13" type = "controlPoint"/>
+                           <jd2:pt x = "227" y = "662.13" type = "controlPoint"/>
+                           <jd2:pt x = "177" y = "654" type = "product" speciesRef = "S7"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r4" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S13" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S2" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S11"/>
+                        <jd2:destinationReaction name = "r4" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "338" y = "549" type = "modifier" speciesRef = "S11"/>
+                              <jd2:pt x = "582.76" y = "315.63"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S11*(kf_J4*S13-kr_J4*S2)/(1+S13+S2)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J4" value = "0.215390955997022"/>
+                        <jd2:parameter id = "kr_J4" value = "0.860861460305174"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "571" y = "65" type = "substrate" speciesRef = "S13"/>
+                           <jd2:pt x = "558.53" y = "310.5" type = "controlPoint"/>
+                           <jd2:pt x = "558.53" y = "310.5" type = "controlPoint"/>
+                           <jd2:pt x = "887" y = "684" type = "product" speciesRef = "S2"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r5" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S15" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "S14" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S9" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "kf_J5*S15*S14-kr_J5*S9"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J5" value = "0.665962321800989"/>
+                        <jd2:parameter id = "kr_J5" value = "0.389028387952759"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:edgeCenter x = "248" y = "399"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "198" y = "328" type = "substrate" speciesRef = "S15"/>
+                           <jd2:pt x = "227.5" y = "373.83" type = "controlPoint"/>
+                           <jd2:pt x = "255.5" y = "404.33" type = "controlPoint"/>
+                           <jd2:pt x = "248" y = "399" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "154" y = "501" type = "substrate" speciesRef = "S14"/>
+                           <jd2:pt x = "197" y = "454.83" type = "controlPoint"/>
+                           <jd2:pt x = "255.5" y = "404.33" type = "controlPoint"/>
+                           <jd2:pt x = "248" y = "399" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "248" y = "399" type = "centerPoint"/>
+                           <jd2:pt x = "240.5" y = "393.66" type = "controlPoint"/>
+                           <jd2:pt x = "440.5" y = "472.33" type = "controlPoint"/>
+                           <jd2:pt x = "534" y = "496" type = "product" speciesRef = "S9"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r6" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S11" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S1" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S9"/>
+                        <jd2:destinationReaction name = "r6" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "534" y = "496" type = "modifier" speciesRef = "S9"/>
+                              <jd2:pt x = "440.71" y = "538.42"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S9*kf_J6*S11/(1+S11)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J6" value = "0.3070383460916"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "338" y = "549" type = "substrate" speciesRef = "S11"/>
+                           <jd2:pt x = "428.44" y = "545" type = "controlPoint"/>
+                           <jd2:pt x = "463.44" y = "549" type = "controlPoint"/>
+                           <jd2:pt x = "553" y = "578" type = "product" speciesRef = "S1"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r7" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S1" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S3" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S9"/>
+                        <jd2:destinationReaction name = "r7" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "534" y = "496" type = "modifier" speciesRef = "S9"/>
+                              <jd2:pt x = "643.52" y = "557.42"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S9*kf_J7*S1/(1+S1)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J7" value = "0.683767345307323"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "553" y = "578" type = "substrate" speciesRef = "S1"/>
+                           <jd2:pt x = "637.27" y = "554.38" type = "controlPoint"/>
+                           <jd2:pt x = "666.27" y = "572.38" type = "controlPoint"/>
+                           <jd2:pt x = "746" y = "604" type = "product" speciesRef = "S3"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r8" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S3" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S1" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S6"/>
+                        <jd2:destinationReaction name = "r8" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "540" y = "652" type = "modifier" speciesRef = "S6"/>
+                              <jd2:pt x = "663.58" y = "614.18"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S6*kf_J8*S3/(1+S3)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J8" value = "0.737185387617696"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "746" y = "604" type = "substrate" speciesRef = "S3"/>
+                           <jd2:pt x = "672" y = "603.77" type = "controlPoint"/>
+                           <jd2:pt x = "653" y = "606.77" type = "controlPoint"/>
+                           <jd2:pt x = "553" y = "578" type = "product" speciesRef = "S1"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r9" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S1" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S11" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges>
+                     <jd2:modifierEdge visible = "true">
+                        <jd2:speciesReference species = "S6"/>
+                        <jd2:destinationReaction name = "r9" regulatorType = "rtPositive" relativePosition = "0.5" destinationArcId = "0"
+                                                 destinationLineSegmentId = "0"/>
+                        <jd2:display lineThickness = "2" lineColor = "FF0000FF" lineDashStyle = "dsSolid" positiveMarkerStyle = "rmEmptyCircle">
+                           <jd2:lineType type = "ltLine">
+                              <jd2:pt x = "540" y = "652" type = "modifier" speciesRef = "S6"/>
+                              <jd2:pt x = "441.83" y = "600.82"/>
+                           </jd2:lineType>
+                        </jd2:display>
+                     </jd2:modifierEdge>
+                  </jd2:listOfModifierEdges>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "S6*kf_J9*S1/(1+S1)"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J9" value = "0.416765833486787"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge>
+                           <jd2:pt x = "553" y = "578" type = "substrate" speciesRef = "S1"/>
+                           <jd2:pt x = "430.15" y = "597" type = "controlPoint"/>
+                           <jd2:pt x = "433.15" y = "596" type = "controlPoint"/>
+                           <jd2:pt x = "338" y = "549" type = "product" speciesRef = "S11"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r10" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S11" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "S13" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S12" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "kf_J10*S11*S13-kr_J10*S12"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J10" value = "0.152327320395168"/>
+                        <jd2:parameter id = "kr_J10" value = "0.259291585339253"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:edgeCenter x = "291" y = "191"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "338" y = "549" type = "substrate" speciesRef = "S11"/>
+                           <jd2:pt x = "403.83" y = "350.83" type = "controlPoint"/>
+                           <jd2:pt x = "319.17" y = "234.83" type = "controlPoint"/>
+                           <jd2:pt x = "291" y = "191" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "571" y = "65" type = "substrate" speciesRef = "S13"/>
+                           <jd2:pt x = "473.33" y = "114.33" type = "controlPoint"/>
+                           <jd2:pt x = "319.17" y = "234.83" type = "controlPoint"/>
+                           <jd2:pt x = "291" y = "191" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "291" y = "191" type = "centerPoint"/>
+                           <jd2:pt x = "262.83" y = "147.17" type = "controlPoint"/>
+                           <jd2:pt x = "244.83" y = "124.83" type = "controlPoint"/>
+                           <jd2:pt x = "171" y = "89" type = "product" speciesRef = "S12"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r11" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S12" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S8" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "S10" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "kf_J11*S12-kr_J11*S8*S10"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J11" value = "0.104950899342682"/>
+                        <jd2:parameter id = "kr_J11" value = "0.570543051740582"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:edgeCenter x = "457.333343505859" y = "210.33332824707"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "171" y = "89" type = "substrate" speciesRef = "S12"/>
+                           <jd2:pt x = "402.21" y = "139.67" type = "controlPoint"/>
+                           <jd2:pt x = "457.21" y = "212.67" type = "controlPoint"/>
+                           <jd2:pt x = "457.33" y = "210.33" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "457.33" y = "210.33" type = "centerPoint"/>
+                           <jd2:pt x = "457.46" y = "208" type = "controlPoint"/>
+                           <jd2:pt x = "492.09" y = "210.67" type = "controlPoint"/>
+                           <jd2:pt x = "697" y = "247" type = "product" speciesRef = "S8"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "457.33" y = "210.33" type = "centerPoint"/>
+                           <jd2:pt x = "457.46" y = "208" type = "controlPoint"/>
+                           <jd2:pt x = "461.29" y = "288.67" type = "controlPoint"/>
+                           <jd2:pt x = "452" y = "349" type = "product" speciesRef = "S10"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+               <jd2:reaction id = "r12" reversible = "false">
+                  <jd2:listOfReactants>
+                     <jd2:speciesReference species = "S8" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "S10" stoichiometry = "1"/>
+                  </jd2:listOfReactants>
+                  <jd2:listOfProducts>
+                     <jd2:speciesReference species = "S4" stoichiometry = "1"/>
+                     <jd2:speciesReference species = "S13" stoichiometry = "1"/>
+                  </jd2:listOfProducts>
+                  <jd2:listOfModifierEdges/>
+                  <jd2:kineticLaw type = "explicit">
+                     <jd2:rateEquation value = "kf_J12*S8*S10-kr_J12*S4*S13"/>
+                     <jd2:listOfSymbols>
+                        <jd2:parameter id = "kf_J12" value = "0.673575694814054"/>
+                        <jd2:parameter id = "kr_J12" value = "0.0100949502687218"/>
+                     </jd2:listOfSymbols>
+                  </jd2:kineticLaw>
+                  <jd2:display lineColor = "FF000000" lineThickness = "2">
+                     <jd2:arrowTip visible = "true" fillColor = "FFFFA500" outLineColor = "FFFFA500" outlineThickness = "2"
+                                   displacement = "6">
+                        <jd2:vertices>
+                           <jd2:pt x = "0" y = "14"/>
+                           <jd2:pt x = "3" y = "7"/>
+                           <jd2:pt x = "0" y = "0"/>
+                           <jd2:pt x = "14" y = "7"/>
+                        </jd2:vertices>
+                     </jd2:arrowTip>
+                     <jd2:edgeCenter x = "527.5" y = "173.75"/>
+                     <jd2:lineType type = "ltBezier">
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "697" y = "247" type = "substrate" speciesRef = "S8"/>
+                           <jd2:pt x = "525.75" y = "179.38" type = "controlPoint"/>
+                           <jd2:pt x = "526.75" y = "175" type = "controlPoint"/>
+                           <jd2:pt x = "527.5" y = "173.75" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "substrate">
+                           <jd2:pt x = "452" y = "349" type = "substrate" speciesRef = "S10"/>
+                           <jd2:pt x = "480.25" y = "298.38" type = "controlPoint"/>
+                           <jd2:pt x = "526.75" y = "175" type = "controlPoint"/>
+                           <jd2:pt x = "527.5" y = "173.75" type = "centerPoint"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "527.5" y = "173.75" type = "centerPoint"/>
+                           <jd2:pt x = "528.25" y = "172.5" type = "controlPoint"/>
+                           <jd2:pt x = "499.25" y = "136.38" type = "controlPoint"/>
+                           <jd2:pt x = "355" y = "36" type = "product" speciesRef = "S4"/>
+                        </jd2:edge>
+                        <jd2:edge type = "product">
+                           <jd2:pt x = "527.5" y = "173.75" type = "centerPoint"/>
+                           <jd2:pt x = "528.25" y = "172.5" type = "controlPoint"/>
+                           <jd2:pt x = "546.75" y = "123.88" type = "controlPoint"/>
+                           <jd2:pt x = "571" y = "65" type = "product" speciesRef = "S13"/>
+                        </jd2:edge>
+                     </jd2:lineType>
+                     <jd2:displayValue visible = "false" showValue = "false" value = "0">
+                        <jd2:position rx = "0" ry = "0"/>
+                        <jd2:font fontName = "Arial" fontSize = "10" fontColor = "FF000000" fontStyle = ""/>
+                     </jd2:displayValue>
+                  </jd2:display>
+               </jd2:reaction>
+            </jd2:listOfReactions>
+         </jd2:PathwayDesignerLayout>
+      </annotation>
+      <listOfCompartments>
+         <compartment id = "compartment" size = "1"/>
+      </listOfCompartments>
+      <listOfSpecies>
+         <species id = "S1" name = "S1" boundaryCondition = "false" initialConcentration = "0.0829939827339898"
+                  compartment = "compartment"/>
+         <species id = "S2" name = "S2" boundaryCondition = "false" initialConcentration = "0.00427445838447142"
+                  compartment = "compartment"/>
+         <species id = "S3" name = "S3" boundaryCondition = "false" initialConcentration = "0.131320727598394"
+                  compartment = "compartment"/>
+         <species id = "S4" name = "S4" boundaryCondition = "false" initialConcentration = "0.490544081054721"
+                  compartment = "compartment"/>
+         <species id = "S5" name = "S5" boundaryCondition = "false" initialConcentration = "0.0376547831972931"
+                  compartment = "compartment"/>
+         <species id = "S6" name = "S6" boundaryCondition = "false" initialConcentration = "0.336414867486408"
+                  compartment = "compartment"/>
+         <species id = "S7" name = "S7" boundaryCondition = "false" initialConcentration = "0.524540884540333"
+                  compartment = "compartment"/>
+         <species id = "S8" name = "S8" boundaryCondition = "false" initialConcentration = "0.000334885529950926"
+                  compartment = "compartment"/>
+         <species id = "S9" name = "S9" boundaryCondition = "false" initialConcentration = "0.549377054017463"
+                  compartment = "compartment"/>
+         <species id = "S10" name = "S10" boundaryCondition = "false" initialConcentration = "0.375047545980766"
+                  compartment = "compartment"/>
+         <species id = "S11" name = "S11" boundaryCondition = "false" initialConcentration = "0.0680312879170209"
+                  compartment = "compartment"/>
+         <species id = "S12" name = "S12" boundaryCondition = "false" initialConcentration = "0.000682786564850941"
+                  compartment = "compartment"/>
+         <species id = "S13" name = "S13" boundaryCondition = "false" initialConcentration = "0.017083895049524"
+                  compartment = "compartment"/>
+         <species id = "S14" name = "S14" boundaryCondition = "false" initialConcentration = "0.312059075093545"
+                  compartment = "compartment"/>
+         <species id = "S15" name = "S15" boundaryCondition = "false" initialConcentration = "1.02840773395118"
+                  compartment = "compartment"/>
+         <species id = "S_out" name = "S_out" boundaryCondition = "false" initialConcentration = "0.00465194079302778"
+                  compartment = "compartment"/>
+         <species id = "S_in" boundaryCondition = "true" initialConcentration = "8.28037812563085" compartment = "compartment"/>
+      </listOfSpecies>
+      <listOfParameters>
+         <parameter id = "kf_J1" value = "0.690603064087263"/>
+         <parameter id = "kr_J1" value = "0.690020517936982"/>
+         <parameter id = "kf_J2" value = "0.720723407412616"/>
+         <parameter id = "kf_J3" value = "0.466652286454309"/>
+         <parameter id = "kf_J4" value = "0.215390955997022"/>
+         <parameter id = "kr_J4" value = "0.860861460305174"/>
+         <parameter id = "kf_J5" value = "0.665962321800989"/>
+         <parameter id = "kr_J5" value = "0.389028387952759"/>
+         <parameter id = "kf_J6" value = "0.3070383460916"/>
+         <parameter id = "kf_J7" value = "0.683767345307323"/>
+         <parameter id = "kf_J8" value = "0.737185387617696"/>
+         <parameter id = "kf_J9" value = "0.416765833486787"/>
+         <parameter id = "kf_J10" value = "0.152327320395168"/>
+         <parameter id = "kr_J10" value = "0.259291585339253"/>
+         <parameter id = "kf_J11" value = "0.104950899342682"/>
+         <parameter id = "kr_J11" value = "0.570543051740582"/>
+         <parameter id = "kf_J12" value = "0.673575694814054"/>
+         <parameter id = "kr_J12" value = "0.0100949502687218"/>
+      </listOfParameters>
+      <listOfReactions>
+         <reaction id = "r1" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S_in" stoichiometry = "1"/>
+               <speciesReference species = "S5" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S14" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <minus/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kf_J1
+                        </ci>
+                        <ci>
+                              S_in
+                        </ci>
+                        <ci>
+                              S5
+                        </ci>
+                     </apply>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kr_J1
+                        </ci>
+                        <ci>
+                              S14
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r2" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S7" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S_out" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S2"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S2
+                        </ci>
+                        <ci>
+                              kf_J2
+                        </ci>
+                        <ci>
+                              S7
+                        </ci>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S7
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r3" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S_out" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S7" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S4"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S4
+                        </ci>
+                        <ci>
+                              kf_J3
+                        </ci>
+                        <ci>
+                              S_out
+                        </ci>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S_out
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r4" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S13" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S2" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S11"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S11
+                        </ci>
+                        <apply>
+                           <minus/>
+                           <apply>
+                              <times/>
+                              <ci>
+                                    kf_J4
+                              </ci>
+                              <ci>
+                                    S13
+                              </ci>
+                           </apply>
+                           <apply>
+                              <times/>
+                              <ci>
+                                    kr_J4
+                              </ci>
+                              <ci>
+                                    S2
+                              </ci>
+                           </apply>
+                        </apply>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S13
+                        </ci>
+                        <ci>
+                              S2
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r5" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S15" stoichiometry = "1"/>
+               <speciesReference species = "S14" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S9" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <minus/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kf_J5
+                        </ci>
+                        <ci>
+                              S15
+                        </ci>
+                        <ci>
+                              S14
+                        </ci>
+                     </apply>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kr_J5
+                        </ci>
+                        <ci>
+                              S9
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r6" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S11" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S1" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S9"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S9
+                        </ci>
+                        <ci>
+                              kf_J6
+                        </ci>
+                        <ci>
+                              S11
+                        </ci>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S11
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r7" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S1" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S3" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S9"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S9
+                        </ci>
+                        <ci>
+                              kf_J7
+                        </ci>
+                        <ci>
+                              S1
+                        </ci>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S1
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r8" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S3" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S1" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S6"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S6
+                        </ci>
+                        <ci>
+                              kf_J8
+                        </ci>
+                        <ci>
+                              S3
+                        </ci>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S3
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r9" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S1" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S11" stoichiometry = "1"/>
+            </listOfProducts>
+            <listOfModifiers>
+               <modifierSpeciesReference species = "S6"/>
+            </listOfModifiers>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <divide/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              S6
+                        </ci>
+                        <ci>
+                              kf_J9
+                        </ci>
+                        <ci>
+                              S1
+                        </ci>
+                     </apply>
+                     <apply>
+                        <plus/>
+                        <cn type = "integer">
+                              1
+                        </cn>
+                        <ci>
+                              S1
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r10" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S11" stoichiometry = "1"/>
+               <speciesReference species = "S13" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S12" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <minus/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kf_J10
+                        </ci>
+                        <ci>
+                              S11
+                        </ci>
+                        <ci>
+                              S13
+                        </ci>
+                     </apply>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kr_J10
+                        </ci>
+                        <ci>
+                              S12
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r11" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S12" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S8" stoichiometry = "1"/>
+               <speciesReference species = "S10" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <minus/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kf_J11
+                        </ci>
+                        <ci>
+                              S12
+                        </ci>
+                     </apply>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kr_J11
+                        </ci>
+                        <ci>
+                              S8
+                        </ci>
+                        <ci>
+                              S10
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+         <reaction id = "r12" reversible = "false">
+            <listOfReactants>
+               <speciesReference species = "S8" stoichiometry = "1"/>
+               <speciesReference species = "S10" stoichiometry = "1"/>
+            </listOfReactants>
+            <listOfProducts>
+               <speciesReference species = "S4" stoichiometry = "1"/>
+               <speciesReference species = "S13" stoichiometry = "1"/>
+            </listOfProducts>
+            <kineticLaw>
+               <math xmlns = "http://www.w3.org/1998/Math/MathML">
+                  <apply>
+                     <minus/>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kf_J12
+                        </ci>
+                        <ci>
+                              S8
+                        </ci>
+                        <ci>
+                              S10
+                        </ci>
+                     </apply>
+                     <apply>
+                        <times/>
+                        <ci>
+                              kr_J12
+                        </ci>
+                        <ci>
+                              S4
+                        </ci>
+                        <ci>
+                              S13
+                        </ci>
+                     </apply>
+                  </apply>
+               </math>
+            </kineticLaw>
+         </reaction>
+      </listOfReactions>
+   </model>
+</sbml>
