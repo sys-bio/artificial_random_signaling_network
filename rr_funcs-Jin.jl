@@ -1,7 +1,6 @@
 using Libdl
 rrlib = Libdl.dlopen("C:\\rr\\install\\roadrunner\\bin\\roadrunner_c_api.dll")
 
-
 struct RRVector
 end
 
@@ -13,7 +12,6 @@ end
 
 struct RRCData
 end
-
 
 function disableLoggingToConsole()
     ccall(dlsym(rrlib, :disableLoggingToConsole), cdecl, Bool, ())
@@ -120,21 +118,12 @@ function getSBML(rr)
   return julia_str
 end
 
-# function getSBML(rr)
-#   return unsafe_string(ccall(dlsym(rrlib, :getSBML), cdecl, Ptr{UInt8}, (Ptr{Nothing},), rr))
-# end
-
-
 function getCurrentSBML(rr)
   char_pointer=ccall(dlsym(rrlib, :getCurrentSBML), cdecl, Ptr{UInt8}, (Ptr{Nothing},), rr)
   julia_str=unsafe_string(char_pointer)
   freeText(char_pointer)
   return julia_str
 end
-
-# function getCurrentSBML(rr)
-#   return unsafe_string(ccall(dlsym(rrlib, :getCurrentSBML), cdecl, Ptr{UInt8}, (Ptr{Nothing},), rr))
-# end
 
 function loadSBML(rr::Ptr{Nothing}, sbml::String)
   return ccall(dlsym(rrlib, :loadSBML), cdecl, Bool, (Ptr{Nothing}, Ptr{UInt8}), rr, sbml)
@@ -186,7 +175,6 @@ function getVectorElement(vector::Ptr{RRVector}, index::Int64)
   return value[1]
 end
 
-
 function freeVector(vector::Ptr{RRVector})
   status = ccall(dlsym(rrlib, :freeVector), cdecl, Bool, (Ptr{RRVector},), vector)
   if status == false
@@ -218,18 +206,12 @@ function getGlobalParameterIds(rr)
   return ccall(dlsym(rrlib, :getGlobalParameterIds), cdecl, Ptr{RRStringArray}, (Ptr{Nothing},), rr)
 end
 
-
 function getStringElement(list::Ptr{RRStringArray}, index::Int64)
   char_pointer=ccall(dlsym(rrlib, :getStringElement), cdecl, Ptr{UInt8}, (Ptr{RRStringArray}, Int64), list, index)
   julia_str=unsafe_string(char_pointer)
   freeText(char_pointer)
   return julia_str
 end
-
-# function getStringElement(list::Ptr{RRStringArray}, index::Int64)
-#   return unsafe_string(ccall(dlsym(rrlib, :getStringElement), cdecl, Ptr{UInt8}, (Ptr{RRStringArray}, Int64), list, index))
-# end
-
 
 function freeRRInstance(rr::Ptr{Nothing})
   free_status = ccall(dlsym(rrlib, :freeRRInstance), cdecl, Bool, (Ptr{Nothing},), rr)
@@ -244,15 +226,6 @@ function freeMatrix(matrix::Ptr{RRDoubleMatrix})
     (error(getLastError()))
   end
 end
-
-# does not work, why?
-# function getLastError()
-#   char_pointer=ccall(dlsym(rrlib, :getLastError), cdecl, Ptr{UInt8}, ())
-#   julia_str=unsafe_string(char_pointer)
-#   freeText(char_pointer)
-#   return julia_str
-# end
-
 
 function getLastError()
   return unsafe_string(ccall(dlsym(rrlib, :getLastError), cdecl, Ptr{UInt8}, ()))
@@ -292,7 +265,6 @@ end
 function getFloatingSpeciesIds(rr)
   return ccall(dlsym(rrlib, :getFloatingSpeciesIds), cdecl, Ptr{RRStringArray}, (Ptr{Nothing},), rr)
 end
-
 
 function getBoundarySpeciesIds(rr)
   return ccall(dlsym(rrlib, :getBoundarySpeciesIds), cdecl, Ptr{RRStringArray}, (Ptr{Nothing},), rr)

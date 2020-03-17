@@ -25,8 +25,6 @@ abs_noise = 0.005
 rel_noise = 0.05
 #high noise
 #rel_noise=0.2
-#only consider the networks with at least one boundary species and one floating species
-#minimum number: 5 species, and 4 reactions for the bi-stable states
 perturbation_flag = false
 concentration_perturb = 2.
 
@@ -40,234 +38,6 @@ function rv_specs(ids_species, ids_rv)
     return ids_species
 end
 
-function steadyState_self(rr::Ptr{Nothing})
-    value = 0
-    simulate_str = simulate(rr)
-    try
-        nSpecies_floating = getNumberOfFloatingSpecies(rr)
-        for j = 1:nSpecies_floating
-            temp = getRateOfChange(rr, (j-1))
-            value += temp*temp
-        end
-        value = sqrt(value)
-        if value >= 1e-6 || isnan(value) || isinf(value)
-            e = ErrorException("self_func: no steady state")
-            throw(e)
-        end
-    finally
-        freeRRCData(simulate_str)
-    end
-    return value
-end
-
-function speciesPerturbationMatrix(rr, nSpecies_gene, perturbation_percentage)
-    global S_change_scaled
-    S_change_scaled = zeros(nSpecies_gene, nSpecies)
-    S_list = getFloatingSpeciesIds(rr)
-    nSpecies_floating = getNumberOfFloatingSpecies(rr)
-    B_list = getBoundarySpeciesIds(rr)
-    nSpecies_boundary = getNumberOfBoundarySpecies(rr)
-    setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
-    try
-        steadyState(rr)
-        #steadyState_self(rr)
-        S_before = zeros(0)
-        gene_S_before = zeros(0)
-        gene_S_perturb = zeros(0)
-        C_S = getFloatingSpeciesConcentrations(rr)
-        C_B = getBoundarySpeciesConcentrations(rr)
-        for i = 1:nSpecies
-            for j = 1:nSpecies_floating
-                if occursin("S$i", getStringElement(S_list, j-1))
-                    temp_id = j-1
-                    append!(S_before, getVectorElement(C_S, temp_id))
-                end
-            end
-        end
-        for i = 1:nSpecies
-            for j = 1:nSpecies_boundary
-                if occursin("S$i", getStringElement(B_list, j-1))
-                    temp_id = j-1
-                    append!(S_before, getVectorElement(C_B, temp_id))
-                end
-            end
-        end
-        for i = 1:nSpecies_gene
-            for j = 1:nSpecies_floating
-                if occursin(gene_species[i], getStringElement(S_list, j-1))
-                    temp_id = j-1
-                    append!(gene_S_before, getVectorElement(C_S, temp_id))
-                end
-            end
-        end
-        for i = 1:nSpecies_gene
-            for j = 1:nSpecies_boundary
-                if occursin(gene_species[i], getStringElement(B_list, j-1))
-                    temp_id = j-1
-                    append!(gene_S_before, getVectorElement(C_B, temp_id))
-                end
-            end
-        end
-        freeVector(C_S)
-        freeVector(C_B)
-        for i = 1:nSpecies_gene
-            append!(gene_S_perturb, gene_S_before[i]*perturbation_percentage)
-        end
-        S_after_up = zeros(nSpecies_gene, nSpecies)
-        S_after_down = zeros(nSpecies_gene, nSpecies)
-        S_change = zeros(nSpecies_gene, nSpecies)
-        for i = 1:nSpecies_gene
-            for j = 1:nSpecies
-                resetRR(rr)
-                steadyState(rr)
-                #steadyState_self(rr)
-                for m = 1:nSpecies_floating
-                    if occursin(gene_species[i], getStringElement(S_list, m-1))
-                        temp_id = m-1
-                        C_S = getFloatingSpeciesConcentrations(rr)
-                        temp = getVectorElement(C_S, temp_id) + gene_S_perturb[i]*0.5
-                        freeVector(C_S)
-                        setFloatingSpeciesByIndex(rr, temp_id, temp)
-                        steadyState(rr)
-                        #steadyState_self(rr)
-                        for n = 1: nSpecies_floating
-                            if occursin("S$j", getStringElement(S_list, n-1))
-                                temp_id_2 = n-1
-                                C_S = getFloatingSpeciesConcentrations(rr)
-                                S_after_up[i,j] = getVectorElement(C_S, temp_id_2)
-                                freeVector(C_S)
-                            end
-                        end
-                        for n = 1: nSpecies_boundary
-                            if occursin("S$j", getStringElement(B_list, n-1))
-                                temp_id_2 = n-1
-                                C_B = getBoundarySpeciesConcentrations(rr)
-                                S_after_up[i,j] = getVectorElement(C_B, temp_id_2)
-                                freeVector(C_B)
-                            end
-                        end
-                    end
-                end
-                for m = 1:nSpecies_boundary
-                    if occursin(gene_species[i], getStringElement(B_list, m-1))
-                        temp_id = m-1
-                        C_B = getBoundarySpeciesConcentrations(rr)
-                        temp = getVectorElement(C_B, temp_id) + gene_S_perturb[i]*0.5
-                        freeVector(C_B)
-                        setBoundarySpeciesByIndex(rr, temp_id, temp)
-                        steadyState(rr)
-                        #steadyState_self(rr)
-                        for n = 1: nSpecies_floating
-                            if occursin("S$j", getStringElement(S_list, n-1))
-                                temp_id_2 = n-1
-                                C_S = getFloatingSpeciesConcentrations(rr)
-                                S_after_up[i,j] = getVectorElement(C_S, temp_id_2)
-                                freeVector(C_S)
-                            end
-                        end
-                        for n = 1: nSpecies_boundary
-                            if occursin("S$j", getStringElement(B_list, n-1))
-                                temp_id_2 = n-1
-                                C_B = getBoundarySpeciesConcentrations(rr)
-                                S_after_up[i,j] = getVectorElement(C_B, temp_id_2)
-                                freeVector(C_B)
-                            end
-                        end
-                        C_B = getBoundarySpeciesConcentrations(rr)
-                        temp = getVectorElement(C_B, temp_id) - gene_S_perturb[i]*0.5
-                        freeVector(C_B)
-                        setBoundarySpeciesByIndex(rr, temp_id, temp)
-                    end
-                end
-            end
-        end
-        for i = 1:nSpecies_gene
-            for j = 1:nSpecies
-                resetRR(rr)
-                steadyState(rr)
-                #steadyState_self(rr)
-                for m = 1:nSpecies_floating
-                    if occursin(gene_species[i], getStringElement(S_list, m-1))
-                        temp_id = m-1
-                        C_S = getFloatingSpeciesConcentrations(rr)
-                        temp = getVectorElement(C_S, temp_id) - gene_S_perturb[i]*0.5
-                        freeVector(C_S)
-                        setFloatingSpeciesByIndex(rr, temp_id, temp)
-                        steadyState(rr)
-                        #steadyState_self(rr)
-                        for n = 1: nSpecies_floating
-                            if occursin("S$j", getStringElement(S_list, n-1))
-                                temp_id_2 = n-1
-                                C_S = getFloatingSpeciesConcentrations(rr)
-                                S_after_down[i,j] = getVectorElement(C_S, temp_id_2)
-                                freeVector(C_S)
-                            end
-                        end
-                        for n = 1: nSpecies_boundary
-                            if occursin("S$j", getStringElement(B_list, n-1))
-                                temp_id_2 = n-1
-                                C_B = getBoundarySpeciesConcentrations(rr)
-                                S_after_down[i,j] = getVectorElement(C_B, temp_id_2)
-                                freeVector(C_B)
-                            end
-                        end
-                    end
-                end
-                for m = 1:nSpecies_boundary
-                    if occursin(gene_species[i], getStringElement(B_list, m-1))
-                        temp_id = m-1
-                        C_B = getBoundarySpeciesConcentrations(rr)
-                        temp = getVectorElement(C_B, temp_id) - gene_S_perturb[i]*0.5
-                        freeVector(C_B)
-                        setBoundarySpeciesByIndex(rr, temp_id, temp)
-                        steadyState(rr)
-                        #steadyState_self(rr)
-                        for n = 1: nSpecies_floating
-                            if occursin("S$j", getStringElement(S_list, n-1))
-                                temp_id_2 = n-1
-                                C_S = getFloatingSpeciesConcentrations(rr)
-                                S_after_down[i,j] = getVectorElement(C_S, temp_id_2)
-                                freeVector(C_S)
-                            end
-                        end
-                        for n = 1: nSpecies_boundary
-                            if occursin("S$j", getStringElement(B_list, n-1))
-                                temp_id_2 = n-1
-                                C_B = getBoundarySpeciesConcentrations(rr)
-                                S_after_down[i,j] = getVectorElement(C_B, temp_id_2)
-                                freeVector(C_B)
-                            end
-                        end
-                        C_B = getBoundarySpeciesConcentrations(rr)
-                        temp = getVectorElement(C_B, temp_id) + gene_S_perturb[i]*0.5
-                        freeVector(C_B)
-                        setBoundarySpeciesByIndex(rr, temp_id, temp)
-                    end
-                end
-            end
-        end
-        for i = 1:nSpecies_gene
-            for j = 1:nSpecies
-                S_change[i,j] = S_after_up[i,j] - S_after_down[i,j]
-                if S_before[j] != 0.
-                    S_change_scaled[i,j] = S_change[i,j]*S_before[i]/S_before[j]
-                else
-                    S_change_scaled[i,j] = NaN # here needs to change to n/a
-                end
-            end
-        end
-        freeStringArray(S_list)
-        freeStringArray(B_list)
-    catch e
-        for i = 1: nSpecies_gene
-            for j = 1: nSpecies
-                S_change_scaled[i,j] = NaN
-            end
-        end
-    end
-    return S_change_scaled
-end
-
 function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_percentage)
     global S_change_scaled
     S_change_scaled = zeros(nSpecies_gene, nSpecies)
@@ -278,7 +48,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
     setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
     try
         steadyState(rr)
-        #steadyState_self(rr)
         S_before = zeros(0)
         gene_S_before = zeros(0)
         gene_S_perturb = zeros(0)
@@ -328,7 +97,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
             for j = 1:nSpecies
                 resetRR(rr)
                 steadyState(rr)
-                #steadyState_self(rr)
                 for m = 1:nSpecies_floating
                     if occursin(gene_species[i], getStringElement(S_list, m-1))
                         temp_id = m-1
@@ -337,7 +105,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
                         freeVector(C_S)
                         setFloatingSpeciesByIndex(rr, temp_id, temp)
                         steadyState(rr)
-                        #steadyState_self(rr)
                         for n = 1: nSpecies_floating
                             if occursin("S$j", getStringElement(S_list, n-1))
                                 temp_id_2 = n-1
@@ -364,7 +131,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
                         freeVector(C_B)
                         setBoundarySpeciesByIndex(rr, temp_id, temp)
                         steadyState(rr)
-                        #steadyState_self(rr)
                         for n = 1: nSpecies_floating
                             if occursin("S$j", getStringElement(S_list, n-1))
                                 temp_id_2 = n-1
@@ -394,7 +160,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
             for j = 1:nSpecies
                 resetRR(rr)
                 steadyState(rr)
-                #steadyState_self(rr)
                 for m = 1:nSpecies_floating
                     if occursin(gene_species[i], getStringElement(S_list, m-1))
                         temp_id = m-1
@@ -403,7 +168,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
                         freeVector(C_S)
                         setFloatingSpeciesByIndex(rr, temp_id, temp)
                         steadyState(rr)
-                        #steadyState_self(rr)
                         for n = 1: nSpecies_floating
                             if occursin("S$j", getStringElement(S_list, n-1))
                                 temp_id_2 = n-1
@@ -430,7 +194,6 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
                         freeVector(C_B)
                         setBoundarySpeciesByIndex(rr, temp_id, temp)
                         steadyState(rr)
-                        #steadyState_self(rr)
                         for n = 1: nSpecies_floating
                             if occursin("S$j", getStringElement(S_list, n-1))
                                 temp_id_2 = n-1
@@ -462,14 +225,13 @@ function speciesPerturbationMatrix_up_only(rr, nSpecies_gene, perturbation_perce
                 if S_before[j] != 0.
                     S_change_scaled[i,j] = S_change[i,j]*S_before[i]/S_before[j]
                 else
-                    S_change_scaled[i,j] = NaN # here needs to change to n/a
+                    S_change_scaled[i,j] = NaN
                 end
             end
         end
         freeStringArray(S_list)
         freeStringArray(B_list)
     catch e
-        #println("no steady state")
         for i = 1: nSpecies_gene
             for j = 1: nSpecies
                 S_change_scaled[i,j] = NaN
@@ -487,16 +249,11 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
     GN_RXN_MECH = ["UNICAT", "CIRCLE", "DBCIRCLE"]
     GN_RXN_MECH_WEIGHT = [0.4, 0.3, 0.3]
 
-
     generation_trial_threshold = 10
-
     species = ["S$i" for i = 1:nSpecies]
     gene_species = species[1:nSpecies_gene]
-
     rct_counter = zeros(nSpecies)
     prd_counter = zeros(nSpecies)
-
-
     generation_trial = 0
 
     valid_nRxns = false
@@ -616,7 +373,6 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         setBoundary(rr, "S_out", false, false)
         append!(ids_tot, ids)
 
-
         specs_input = [] #species connected to input layer
         specs_output = [] #species connected to output layer
         # input layer prds can only be next layer's input or catalyzation
@@ -651,7 +407,6 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                 end
             end
         end
-
 
         rxn_counter += 1
         if specs_output_selec in gene_species #rxn_mechanism == "UNICAT"
@@ -740,13 +495,8 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         append!(ids_tot, ids)
         append!(ids_tot, ids_out)
 
-
-
-
         prds = rxn_specs["r1"]["prds"]
         append!(specs_input, prds)
-
-
 
         all_species_involved = false
         # check if all species are involved
@@ -759,8 +509,6 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         if nSpecies_involved == nSpecies
             global all_species_involved = true
         end
-        #println("nSpecies_involved_before:", nSpecies_involved)
-
 
         while all_species_involved == false
             # check if all species are involved
@@ -773,19 +521,15 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
             if nSpecies_involved == nSpecies
                 global all_species_involved = true
             end
-            #println("nSpecies_involved:", nSpecies_involved)
-
 
             # at least one of the specs_input should be connected to the next layer
             # random select one species from the prds
-            #println(specs_input)
             specs_input_selec = specs_input[rand(1:size(specs_input)[1])]
             for i = 1: nSpecies
                 if "S$i" == specs_input_selec
                     global specs_input_selec_ids = [i]
                 end
             end
-
 
             species_ids_in = []
             append!(species_ids_in, species_ids)
@@ -806,7 +550,6 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                     end
                 end
             end
-
 
             rxn_counter_start = rxn_counter
             rxn_counter += 1
@@ -1357,20 +1100,11 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                     prds = rxn_specs["r$i"]["prds"]
                     rxn_mech = rxn_specs["r$i"]["rxn_mech"]
                     i == rxn_counter ? regen = true : regen = false
-                    addReaction(rr, "r$i", rcts, prds, rxn_mech[1], regen) #here pay attention to true and false
+                    addReaction(rr, "r$i", rcts, prds, rxn_mech[1], regen)
                 end
-
-
-
-                sbml_sample = getCurrentSBML(rr)
-                f_sample = open("randomNetwork.xml", "w+");
-                write(f_sample, sbml_sample)
-                close(f_sample)
-
 
             else
                 global eff_steps = 0
-                #println(eff_steps)
                 e = ErrorException("Incomplete network")
                 throw(e)
             end
@@ -1378,7 +1112,6 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
             generation_trial += 1
             if generation_trial >= generation_trial_threshold
                 e = ErrorException("Failure to generate due to too small nRxns_limiation")
-                #println("generation_trial:", generation_trial)
                 throw(e)
             end
         end
@@ -1410,120 +1143,108 @@ function negativeConcentration(rr)
 end
 
 # Generate the ground truth model
-#rr_real = createRRInstance()
 
-@time begin
 
-    goodSample = 0
-    while goodSample == 0
+goodSample = 0
+while goodSample == 0
 
-        global species = ["S$i" for i = 1:nSpecies]
-        global gene_species = species[1:nSpecies_gene]
-    ## random network generation
-        global rr_real = createRRInstance()
+    global species = ["S$i" for i = 1:nSpecies]
+    global gene_species = species[1:nSpecies_gene]
+## random network generation
+    global rr_real = createRRInstance()
+    try
+        (rr_real, rxn_specs, eff_steps) = randomNetwork(rr_real, nSpecies, nSpecies_gene, nRxns_limitation)
+
+        P_num = getNumberOfGlobalParameters(rr_real)
+        nSpecies_boundary = getNumberOfBoundarySpecies(rr_real)
+        nSpecies_floating = getNumberOfFloatingSpecies(rr_real)
+        #assign random values to spieces and parameters
+        for i = 0:(nSpecies_floating-1)
+            setFloatingSpeciesInitialConcentrationByIndex(rr_real, i, rnd_species*rand()) # random number [0,1)
+        end
+        for i = 0:(nSpecies_boundary-1)
+            setBoundarySpeciesByIndex(rr_real, i, rnd_species*rand())
+        end
+        for i = 0:(P_num-1)
+            setGlobalParameterByIndex(rr_real, i, rnd_parameter*rand())
+        end
+        setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
+        # Check if the ground truth model has a steady state
         try
-            (rr_real, rxn_specs, eff_steps) = randomNetwork(rr_real, nSpecies, nSpecies_gene, nRxns_limitation)
-
-            P_num = getNumberOfGlobalParameters(rr_real)
-            nSpecies_boundary = getNumberOfBoundarySpecies(rr_real)
-            nSpecies_floating = getNumberOfFloatingSpecies(rr_real)
-            #assign random values to spieces and parameters
-            for i = 0:(nSpecies_floating-1)
-                setFloatingSpeciesInitialConcentrationByIndex(rr_real, i, rnd_species*rand()) # random number [0,1)
-            end
-            for i = 0:(nSpecies_boundary-1)
-                setBoundarySpeciesByIndex(rr_real, i, rnd_species*rand())
-            end
-            for i = 0:(P_num-1)
-                setGlobalParameterByIndex(rr_real, i, rnd_parameter*rand())
-            end
-            setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
-            # Check if the ground truth model has a steady state
-            try
-                steadyState(rr_real)
-                #steadyState_self(rr_real)
-                #check if it is a valid steadystate
-                neg_c = negativeConcentration(rr_real)
-                if neg_c == 0
-                    C_B = getBoundarySpeciesConcentrations(rr_real)
-                    C_Sin = getVectorElement(C_B, nSpecies_boundary-1)
+            steadyState(rr_real)
+            #check if it is a valid steadystate
+            neg_c = negativeConcentration(rr_real)
+            if neg_c == 0
+                C_B = getBoundarySpeciesConcentrations(rr_real)
+                C_Sin = getVectorElement(C_B, nSpecies_boundary-1)
+                C_S = getFloatingSpeciesConcentrations(rr_real)
+                C_Sout = getVectorElement(C_S, nSpecies_floating-1)
+                freeVector(C_B)
+                freeVector(C_S)
+                setBoundarySpeciesByIndex(rr_real, nSpecies_boundary-1, C_Sin*concentration_perturb)
+                setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
+                try
+                    steadyState(rr_real)
                     C_S = getFloatingSpeciesConcentrations(rr_real)
-                    C_Sout = getVectorElement(C_S, nSpecies_floating-1)
-                    freeVector(C_B)
+                    C_Sout_after = getVectorElement(C_S, nSpecies_floating-1)
+                    C_Sout_change = C_Sout_after - C_Sout
                     freeVector(C_S)
-                    setBoundarySpeciesByIndex(rr_real, nSpecies_boundary-1, C_Sin*concentration_perturb)
-                    setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
-                    try
-                        steadyState(rr_real)
-                        #steadyState_self(rr_real)
-                        C_S = getFloatingSpeciesConcentrations(rr_real)
-                        C_Sout_after = getVectorElement(C_S, nSpecies_floating-1)
-                        C_Sout_change = C_Sout_after - C_Sout
-                        freeVector(C_S)
-                        if (abs.(C_Sout_change) > 0 && eff_steps >= 3)
-                            #println("C_out:", C_Sout)
-                            #println("C_Sout_change:", C_Sout_change)
-                            #println("eff_steps:", eff_steps)
-                            if perturbation_flag == true
-                                #global F_real = speciesPerturbationMatrix(rr_real, nSpecies_gene, perturbation_percentage) #up_and_down case is quite sparse
-                                global F_real = speciesPerturbationMatrix_up_only(rr_real, nSpecies_gene, perturbation_percentage)
-                                nan_inf = 0
+                    if (abs.(C_Sout_change) > 0 && eff_steps >= 3)
+                        if perturbation_flag == true
+                            global F_real = speciesPerturbationMatrix_up_only(rr_real, nSpecies_gene, perturbation_percentage)
+                            nan_inf = 0
+                            for x = 1:nSpecies_gene
+                                for y = 1:nSpecies
+                                    if isnan(F_real[x,y]) || isinf(F_real[x,y])
+                                        nan_inf = 1
+                                    end
+                                end
+                            end
+                            if nan_inf == 0
                                 for x = 1:nSpecies_gene
                                     for y = 1:nSpecies
-                                        if isnan(F_real[x,y]) || isinf(F_real[x,y])
-                                            nan_inf = 1
+                                        if abs.(F_real[x,y]) < 1e-12
+                                            F_real[x,y] = 0.
                                         end
                                     end
                                 end
-                                if nan_inf == 0
-                                    for x = 1:nSpecies_gene
-                                        for y = 1:nSpecies
-                                            if abs.(F_real[x,y]) < 1e-12
-                                                F_real[x,y] = 0.
-                                            end
-                                        end
+                                if F_real != zeros(nSpecies_gene, nSpecies)
+                                    if noise
+                                        with_noise = (F_real[x,y] + rand(Normal(0., abs_noise), 1)[1]+
+                                        rand(Normal(0, abs.(F_real[x,y]*rel_noise)), 1)[1])
+                                        F_real[x,y] = with_noise
                                     end
-                                    if F_real != zeros(nSpecies_gene, nSpecies)
-                                        # make sure if only very few elements are zeros which could work for this algorithm
-                                        if noise
-                                            with_noise = (F_real[x,y] + rand(Normal(0., abs_noise), 1)[1]+
-                                            rand(Normal(0, abs.(F_real[x,y]*rel_noise)), 1)[1])
-                                            F_real[x,y] = with_noise
-                                        end
-                                        global goodSample = 1
-                                        #println(rxn_specs)
-                                        sbml_sample = getCurrentSBML(rr_real)
-                                        f_sample = open("sampleNetwork.xml", "w+");
-                                        write(f_sample, sbml_sample)
-                                        close(f_sample)
-                                        println("a good model!")
-                                        freeRRInstance(rr_real)
-                                    end
-                                else
-                                    println("Error message: perturbation matrix has infinities")
+                                    global goodSample = 1
+                                    sbml_sample = getCurrentSBML(rr_real)
+                                    f_sample = open("sampleNetwork.xml", "w+");
+                                    write(f_sample, sbml_sample)
+                                    close(f_sample)
+                                    println("a good model!")
+                                    freeRRInstance(rr_real)
                                 end
                             else
-                                global goodSample = 1
-                                sbml_sample = getCurrentSBML(rr_real)
-                                f_sample = open("sampleNetwork.xml", "w+");
-                                write(f_sample, sbml_sample)
-                                close(f_sample)
-                                println("a good model without considering perturbation matrix!")
-                                freeRRInstance(rr_real)
+                                println("Error message: perturbation matrix has infinities")
                             end
+                        else
+                            global goodSample = 1
+                            sbml_sample = getCurrentSBML(rr_real)
+                            f_sample = open("sampleNetwork.xml", "w+");
+                            write(f_sample, sbml_sample)
+                            close(f_sample)
+                            println("a good model without considering perturbation matrix!")
+                            freeRRInstance(rr_real)
                         end
-                    catch e
-                        continue
                     end
-                else
-                    println("Error message: negative concentrations")
+                catch e
+                    continue
                 end
-            catch e
-                continue
+            else
+                println("Error message: negative concentrations")
             end
         catch e
-            println(e)
+            continue
         end
+    catch e
+        println(e)
     end
-
 end
