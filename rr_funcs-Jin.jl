@@ -1,5 +1,5 @@
 using Libdl
-rrlib = Libdl.dlopen("C:\\rr\\install\\roadrunner\\bin\\roadrunner_c_api.dll")
+rrlib = Libdl.dlopen("roadrunner_c_api.dll")
 
 struct RRVector
 end
