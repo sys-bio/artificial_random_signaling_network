@@ -2,6 +2,7 @@
 # https://github.com/SunnyXu/aritificial_random_signaling_network
 
 using Libdl
+cd(dirname(@__FILE__))
 rrlib = Libdl.dlopen("roadrunner_c_api.dll")
 
 struct RRVector
