@@ -1,22 +1,40 @@
+# This script was written by Jin Xu and available on Github
+# https://github.com/SunnyXu/aritificial_random_signaling_network
+
 cd(dirname(@__FILE__))
 include("rr_funcs-Jin.jl")
 using Random
 using StatsBase # random pick reaction by weight
 disableLoggingToConsole() # try to disable some warnings like NLEQ
-global nSpecies = 15 # this number excludes the input and output species but includes nSpecies_gene
+
+# number of floating species
+global nSpecies = 15
+# this number excludes the input and output species but includes nSpecies_gene
 #Therefore, the total number of species should be (nSpecies+2)
+
+# maximum number of reactions
 global nRxns_limitation = 15
+
+# number of gene species
 global nSpecies_gene = 2
+# some restrictions:
 # (nSpecies-nSpecies_gene) >= 4 for the case of BIBI
 # nSpecies >= 5 for the case of double catalyzation
 # nSpecies >= 13: 6 to initiate input and output reactions + next input and output layer 7
+
 # random values assignment
+# random number generation for species concentration [0,10)
+rnd_species = 10.
+# random number generation for parameters [0,1)
+rnd_parameter = 1.
+# doubling the concentration at the input species.
+concentration_perturb = 2.
+# number of sampleNetwork.xml to generate
+sampleSize = 2
+# i.e. sampleNetwork-1.xml, sampleNetwork-2.xml
+
 global species = ["S$i" for i = 1:nSpecies]
 global gene_species = species[1:nSpecies_gene]
-rnd_species = 10. # random number for species [0,10)
-rnd_parameter = 1. # random number for concentration [0,1)
-concentration_perturb = 2.
-sampleSize = 2
 
 setConfigBool("ROADRUNNER_DISABLE_WARNINGS", 1)
 function rv_specs(ids_species, ids_rv)
@@ -66,7 +84,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         rxn_counter += 1
         rxn_mechanism = sample(INPUT_RXN_MECH, Weights(INPUT_RXN_MECH_WEIGHT))
         if rxn_mechanism == "UNICAT"
-            parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
+            parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
             ids = sample(species_ids, 2, replace = false)
             prds_id = ids[1]
             cats_id = ids[2]
@@ -78,7 +96,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
             rcts = ["S_in"]
             prds = ["S$prds_id"]
             cats = ["S$cats_id"]
-            rxn_mech = ["S$cats_id * (kf_J$rxn_counter * S_in - kr_J$rxn_counter * S$prds_id) /(1 + S_in + S$prds_id)"]
+            rxn_mech = ["S$cats_id * (kf_J$rxn_counter*S_in/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S_in/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
             rxn_specs["r$rxn_counter"] = Dict{String, Array{String, 1}}("parameters" => parameters, "rcts" => rcts, "prds" => prds, "cats" => cats, "rxn_mech" => rxn_mech)
         elseif rxn_mechanism == "UNIBI"
             parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
@@ -135,8 +153,8 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         rxn_counter += 1
 
         rxn_mechanism == "CIRCLE"
-        parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
-        parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)"]
+        parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+        parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
         ids = sample(species_ids, 3, replace = false)
         rcts_id = ids[1]
         cats_id = ids[2]
@@ -151,8 +169,8 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         prds = ["S_out"]
         cats1 = ["S$cats_id"]
         cats2 = ["S$cats_id2"]
-        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S_out) /(1 + S$rcts_id + S_out)"]
-        rxn_mech2 = ["S$cats_id2 * (kf_J$(rxn_counter+1) * S_out - kr_J$(rxn_counter+1) * S$rcts_id) /(1 + S_out + S$rcts_id)"]
+        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S_out/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S_out/K2_J$rxn_counter)"]
+        rxn_mech2 = ["S$cats_id2 * (kf_J$(rxn_counter+1)*S_out/K2_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$rcts_id/K1_J$(rxn_counter+1)) /(1 + S_out/K2_J$(rxn_counter+1) + S$rcts_id/K1_J$(rxn_counter+1))"]
         rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts, "prds" => prds, "cats" => cats1, "rxn_mech" => rxn_mech1)
         rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds, "prds" => rcts, "cats" => cats2, "rxn_mech" => rxn_mech2)
         rxn_counter += 1
@@ -197,7 +215,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
 
         rxn_counter += 1
         if specs_output_selec in gene_species #rxn_mechanism == "UNICAT"
-            parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
+            parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
             ids = sample(species_ids, 2, replace = false)
             ids_out = []
             rcts_id = ids[1]
@@ -205,12 +223,12 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
             rcts = ["S$rcts_id"]
             prds = [specs_output_selec]
             cats = ["S$cats_id"]
-            rxn_mech = ["S$cats_id * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * $specs_output_selec) /(1 + S$rcts_id + $specs_output_selec)"]
+            rxn_mech = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*$specs_output_selec/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + $specs_output_selec/K2_J$rxn_counter)"]
             rxn_specs["r$rxn_counter"] = Dict{String, Array{String, 1}}("parameters" => parameters, "rcts" => rcts, "prds" => prds, "cats" => cats, "rxn_mech" => rxn_mech)
         else
             rxn_mechanism = sample(INPUT_RXN_MECH, Weights(INPUT_RXN_MECH_WEIGHT))
             if rxn_mechanism == "UNICAT"
-                parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
+                parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
                 ids = sample(species_ids, 2, replace = false)
                 ids_out = []
                 rcts_id = ids[1]
@@ -218,7 +236,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                 rcts = ["S$rcts_id"]
                 prds = [specs_output_selec]
                 cats = ["S$cats_id"]
-                rxn_mech = ["S$cats_id * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * $specs_output_selec) /(1 + S$rcts_id + $specs_output_selec)"]
+                rxn_mech = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*$specs_output_selec/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + $specs_output_selec/K2_J$rxn_counter)"]
                 rxn_specs["r$rxn_counter"] = Dict{String, Array{String, 1}}("parameters" => parameters, "rcts" => rcts, "prds" => prds, "cats" => cats, "rxn_mech" => rxn_mech)
             elseif rxn_mechanism == "UNIBI"
                 parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
@@ -343,7 +361,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
             if specs_input_selec in gene_species
                 rxn_mechanism = sample(GN_RXN_MECH, Weights(GN_RXN_MECH_WEIGHT))
                 if rxn_mechanism == "UNICAT"
-                    parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
+                    parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
                     try
                         ids = sample(species_ids, 1, replace = false)
                         species_ids_in = rv_specs(species_ids_in, ids)
@@ -367,7 +385,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         rcts = [specs_input_selec]
                         prds = ["S$prds_id"]
                         cats = ["S$cats_id"]
-                        rxn_mech = ["S$cats_id * (kf_J$rxn_counter * $specs_input_selec - kr_J$rxn_counter * S$prds_id) /(1 + $specs_input_selec + S$prds_id)"]
+                        rxn_mech = ["S$cats_id * (kf_J$rxn_counter*$specs_input_selec/K1_J$rxn_counter - kr_J$rxn_counter * S$prds_id/K2_J$rxn_counter)/(1 + $specs_input_selec/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
                     else
                         rcts_id = ids_in[1]
                         prds_id = ids[1]
@@ -379,12 +397,12 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         rcts = ["S$rcts_id"]
                         prds = ["S$prds_id"]
                         cats = [specs_input_selec]
-                        rxn_mech = ["$specs_input_selec * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
+                        rxn_mech = ["$specs_input_selec * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
                     end
                     rxn_specs["r$rxn_counter"] = Dict{String, Array{String, 1}}("parameters" => parameters, "rcts" => rcts, "prds" => prds, "cats" => cats, "rxn_mech" => rxn_mech)
                 elseif rxn_mechanism == "CIRCLE"
-                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
-                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)"]
+                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
                     try
                         ids = sample(species_ids, 2, replace = false)
                         species_ids_in = rv_specs(species_ids_in, ids)
@@ -411,8 +429,8 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds = ["S$prds_id"]
                         cats1 = [specs_input_selec]
                         cats2 = ["S$cats_id2"]
-                        rxn_mech1 = ["$specs_input_selec * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["S$cats_id2 * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["$specs_input_selec * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["S$cats_id2* (kf_J$(rxn_counter+1)*S$prds_id/K2_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$rcts_id/K1_J$(rxn_counter+1)) /(1 + S$prds_id/K2_J$(rxn_counter+1) + S$rcts_id/K1_J$(rxn_counter+1))"]
                     else
                         rcts_id = ids[1]
                         prds_id = ids[2]
@@ -427,17 +445,17 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         species_ids = rv_specs(species_ids, rv_ids)
                         non_gene_species_ids = rv_specs(non_gene_species_ids, rv_ids)
                         cats2 = [specs_input_selec]
-                        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["$specs_input_selec * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["$specs_input_selec * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$rcts_id/K1_J$(rxn_counter+1)) /(1 + S$prds_id/K2_J$(rxn_counter+1) + S$rcts_id/K1_J$(rxn_counter+1))"]
                     end
                     rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts, "prds" => prds, "cats" => cats1, "rxn_mech" => rxn_mech1)
                     rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds, "prds" => rcts, "cats" => cats2, "rxn_mech" => rxn_mech2)
                     rxn_counter += 1
                 else rxn_mechanism == "DBCIRCLE"
-                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
-                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)"]
-                    parameters3 = ["kf_J$(rxn_counter+2)", "kr_J$(rxn_counter+2)"]
-                    parameters4 = ["kf_J$(rxn_counter+3)", "kr_J$(rxn_counter+3)"]
+                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
+                    parameters3 = ["kf_J$(rxn_counter+2)", "kr_J$(rxn_counter+2)", "K1_J$(rxn_counter+2)", "K2_J$(rxn_counter+2)"]
+                    parameters4 = ["kf_J$(rxn_counter+3)", "kr_J$(rxn_counter+3)", "K1_J$(rxn_counter+3)", "K2_J$(rxn_counter+3)"]
                     try
                         ids = sample(species_ids, 3, replace = false)
                         species_ids_in = rv_specs(species_ids_in, ids)
@@ -467,10 +485,10 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds2 = ["S$prds_id2"]
                         cats1 = [specs_input_selec]
                         cats2 = ["S$cats_id2"]
-                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$prds_id2) /(1 + S$prds_id + S$prds_id2)"]
-                        rxn_mech3 = ["S$cats_id2 * (kf_J$(rxn_counter+2) * S$prds_id2 - kr_J$(rxn_counter+2) * S$prds_id) /(1 + S$prds_id2 + S$prds_id)"]
-                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3) * S$prds_id - kr_J$(rxn_counter+3) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["S$cats_id2*(kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3)*S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3)*S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
                     else
                         rcts_id  = ids[1]
                         prds_id  = ids[2]
@@ -488,10 +506,10 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds2 = ["S$prds_id2"]
                         cats1 = ["S$cats_id"]
                         cats2 = [specs_input_selec]
-                        rxn_mech1 = ["S$cats_id  * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["S$cats_id  * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$prds_id2) /(1 + S$prds_id + S$prds_id2)"]
-                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2) * S$prds_id2 - kr_J$(rxn_counter+2) * S$prds_id) /(1 + S$prds_id2 + S$prds_id)"]
-                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3) * S$prds_id - kr_J$(rxn_counter+3) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["S$cats_id  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["S$cats_id  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3)*S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3)*S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
                     end
                     rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts1, "prds" => prds1, "cats" => cats1, "rxn_mech" => rxn_mech1)
                     rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds1, "prds" => prds2, "cats" => cats1, "rxn_mech" => rxn_mech2)
@@ -503,7 +521,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
             else # specs_input_selec not in gene_species
                 rxn_mechanism = sample(RXN_MECH, Weights(RXN_MECH_WEIGHT))
                 if rxn_mechanism == "UNICAT"
-                    parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
+                    parameters = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
                     try
                         ids = sample(species_ids, 1, replace = false)
                         species_ids_in = rv_specs(species_ids_in, ids)
@@ -528,7 +546,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         rcts = [specs_input_selec]
                         prds = ["S$prds_id"]
                         cats = ["S$cats_id"]
-                        rxn_mech = ["S$cats_id * (kf_J$rxn_counter * $specs_input_selec - kr_J$rxn_counter * S$prds_id) /(1 + $specs_input_selec + S$prds_id)"]
+                        rxn_mech = ["S$cats_id * (kf_J$rxn_counter*$specs_input_selec/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + $specs_input_selec/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
                     else
                         rcts_id = ids_in[1]
                         prds_id = ids[1]
@@ -540,7 +558,7 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         rcts = ["S$rcts_id"]
                         prds = ["S$prds_id"]
                         cats = [specs_input_selec]
-                        rxn_mech = ["$specs_input_selec * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
+                        rxn_mech = ["$specs_input_selec * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
                     end
                     rxn_specs["r$rxn_counter"] = Dict{String, Array{String, 1}}("parameters" => parameters, "rcts" => rcts, "prds" => prds, "cats" => cats, "rxn_mech" => rxn_mech)
                 elseif rxn_mechanism == "UNIBI"
@@ -650,8 +668,8 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                     end
                     rxn_specs["r$rxn_counter"] = Dict{String, Array{String, 1}}("parameters" => parameters, "rcts" => rcts, "prds" => prds, "cats" => cats, "rxn_mech" => rxn_mech)
                 elseif rxn_mechanism == "CIRCLE"
-                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
-                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)"]
+                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
                     try
                         ids = sample(species_ids, 2, replace = false)
                         species_ids_in = rv_specs(species_ids_in, ids)
@@ -678,8 +696,8 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds = ["S$prds_id"]
                         cats1 = [specs_input_selec]
                         cats2 = ["S$cats_id2"]
-                        rxn_mech1 = ["$specs_input_selec * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["S$cats_id2 * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["$specs_input_selec * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["S$cats_id2 * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$rcts_id/K1_J$(rxn_counter+1)) /(1 + S$prds_id/K2_J$(rxn_counter+1) + S$rcts_id/K1_J$(rxn_counter+1))"]
                     else
                         rcts_id = ids[1]
                         prds_id = ids[2]
@@ -694,17 +712,17 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds = ["S$prds_id"]
                         cats1 = ["S$cats_id"]
                         cats2 = [specs_input_selec]
-                        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["$specs_input_selec * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1)* S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["$specs_input_selec * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$rcts_id/K1_J$(rxn_counter+1)) /(1 + S$prds_id/K2_J$(rxn_counter+1) + S$rcts_id/K1_J$(rxn_counter+1))"]
                     end
                     rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts, "prds" => prds, "cats" => cats1, "rxn_mech" => rxn_mech1)
                     rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds, "prds" => rcts, "cats" => cats2, "rxn_mech" => rxn_mech2)
                     rxn_counter += 1
                 else rxn_mechanism == "DBCIRCLE"
-                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter"]
-                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)"]
-                    parameters3 = ["kf_J$(rxn_counter+2)", "kr_J$(rxn_counter+2)"]
-                    parameters4 = ["kf_J$(rxn_counter+3)", "kr_J$(rxn_counter+3)"]
+                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
+                    parameters3 = ["kf_J$(rxn_counter+2)", "kr_J$(rxn_counter+2)", "K1_J$(rxn_counter+2)", "K2_J$(rxn_counter+2)"]
+                    parameters4 = ["kf_J$(rxn_counter+3)", "kr_J$(rxn_counter+3)", "K1_J$(rxn_counter+3)", "K2_J$(rxn_counter+3)"]
                     try
                         ids = sample(species_ids, 3, replace = false)
                         species_ids_in = rv_specs(species_ids_in, ids)
@@ -734,10 +752,10 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds2 = ["S$prds_id2"]
                         cats1 = [specs_input_selec]
                         cats2 = ["S$cats_id2"]
-                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$prds_id2) /(1 + S$prds_id + S$prds_id2)"]
-                        rxn_mech3 = ["S$cats_id2 * (kf_J$(rxn_counter+2) * S$prds_id2 - kr_J$(rxn_counter+2) * S$prds_id) /(1 + S$prds_id2 + S$prds_id)"]
-                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3) * S$prds_id - kr_J$(rxn_counter+3) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["S$cats_id2 * (kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3)*S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3)*S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
                     else
                         rcts_id  = ids[1]
                         prds_id  = ids[2]
@@ -755,10 +773,10 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
                         prds2 = ["S$prds_id2"]
                         cats1 = ["S$cats_id"]
                         cats2 = [specs_input_selec]
-                        rxn_mech1 = ["S$cats_id  * (kf_J$rxn_counter * S$rcts_id - kr_J$rxn_counter * S$prds_id) /(1 + S$rcts_id + S$prds_id)"]
-                        rxn_mech2 = ["S$cats_id  * (kf_J$(rxn_counter+1) * S$prds_id - kr_J$(rxn_counter+1) * S$prds_id2) /(1 + S$prds_id + S$prds_id2)"]
-                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2) * S$prds_id2 - kr_J$(rxn_counter+2) * S$prds_id) /(1 + S$prds_id2 + S$prds_id)"]
-                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3) * S$prds_id - kr_J$(rxn_counter+3) * S$rcts_id) /(1 + S$prds_id + S$rcts_id)"]
+                        rxn_mech1 = ["S$cats_id  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["S$cats_id  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3) * S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3) * S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
                     end
                     rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts1, "prds" => prds1, "cats" => cats1, "rxn_mech" => rxn_mech1)
                     rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds1, "prds" => prds2, "cats" => cats1, "rxn_mech" => rxn_mech2)
@@ -929,6 +947,8 @@ function negativeConcentration(rr)
     return neg_c
 end
 
+
+# Main code starts from here
 goodSample = 0
 while goodSample < sampleSize
     global species = ["S$i" for i = 1:nSpecies]

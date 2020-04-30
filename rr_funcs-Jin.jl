@@ -1,3 +1,6 @@
+# This script was written by Jin Xu and available on Github
+# https://github.com/SunnyXu/aritificial_random_signaling_network
+
 using Libdl
 rrlib = Libdl.dlopen("roadrunner_c_api.dll")
 
