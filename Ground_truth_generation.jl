@@ -69,11 +69,6 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         global species_ids = collect(1:nSpecies)
         global non_gene_species_ids = collect((nSpecies_gene+1):nSpecies)
 
-        #sbmlFile = "minimal.xml"
-        #f = open(sbmlFile)
-        #sbmlStr = read(f,String)
-        #close(f)
-        #loadSBML(rr, sbmlStr)
         addCompartment(rr, "compartment", 1.0, false)
 
         for s in species
