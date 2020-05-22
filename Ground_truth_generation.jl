@@ -77,10 +77,11 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         addCompartment(rr, "compartment", 1.0, false)
 
         for s in species
-            addSpecies(rr, s, "compartment", 0.1, "concentration", true)
+            #addSpecies(rr, s, "compartment", 0.1, "concentration", true)
+            addSpecies(rr, s, "compartment", 0.1, "", true)
         end
-
-        addSpecies(rr, "S_in", "compartment", 0.1, "concentration", false)
+        #addSpecies(rr, "S_in", "compartment", 0.1, "concentration", false)
+        addSpecies(rr, "S_in", "compartment", 0.1, "", false)
         rxn_counter += 1
         rxn_mechanism = sample(INPUT_RXN_MECH, Weights(INPUT_RXN_MECH_WEIGHT))
         if rxn_mechanism == "UNICAT"
@@ -149,7 +150,9 @@ function randomNetwork(rr, nSpecies, nSpecies_gene, nRxns_limitation)
         setBoundary(rr, "S_in", true, false)
         append!(ids_tot, ids)
 
-        addSpecies(rr, "S_out", "compartment", 0.1, "concentration", false)
+        #addSpecies(rr, "S_out", "compartment", 0.1, "concentration", false)
+        addSpecies(rr, "S_out", "compartment", 0.1, "", false)
+
         rxn_counter += 1
 
         rxn_mechanism == "CIRCLE"
