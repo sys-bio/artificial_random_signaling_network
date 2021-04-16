@@ -1,4 +1,4 @@
-# aritificial_random_signaling_network
+# artificial_random_signaling_network
 If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/content/10.1101/2020.05.08.084848v1) and the GitHub website (https://github.com/SunnyXu/artificial_random_signaling_network).
 
 This package was implemented in Julia 1.2 on Windows 10. To use the package, first install Julia by going to the website: https://julialang.org. Once you have the Julia console open, make sure you have “StatsBase” installed by typing “using Pkg” followed by “Pkg.add("StatsBase”)”. Note there shouldn't be a space between the “add” and the first parenthesis. This is a package required for random number generation. 
