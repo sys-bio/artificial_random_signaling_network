@@ -1,8 +1,5 @@
-# This script was written by Jin Xu and available on Github
-# https://github.com/SunnyXu/aritificial_random_signaling_network
-
 using Libdl
-cd(dirname(@__FILE__))
+
 rrlib = Libdl.dlopen("roadrunner_c_api.dll")
 
 struct RRVector
@@ -16,6 +13,7 @@ end
 
 struct RRCData
 end
+
 
 function disableLoggingToConsole()
     ccall(dlsym(rrlib, :disableLoggingToConsole), cdecl, Bool, ())
@@ -51,18 +49,6 @@ function addParameter(rr::Ptr{Nothing}, pid::String, value::Float64, forceRegen:
      status = ccall(dlsym(rrlib, :addParameter), cdecl, Bool, (Ptr{Nothing}, Ptr{UInt8}, Cdouble), rr, pid, value)
   else
     status = ccall(dlsym(rrlib, :addParameterNoRegen), cdecl, Bool, (Ptr{Nothing}, Ptr{UInt8}, Cdouble), rr, pid, value)
-  end
-  if status == false
-    error(getLastError())
-  end
-end
-
-function removeParameter(rr::Ptr{Nothing}, pid::String, forceRegen::Bool)
-  status = false
-  if forceRegen == true
-     status = ccall(dlsym(rrlib, :removeParameter), cdecl, Bool, (Ptr{Nothing}, Ptr{UInt8}), rr, pid)
-  else
-    status = ccall(dlsym(rrlib, :removeParameterNoRegen), cdecl, Bool, (Ptr{Nothing}, Ptr{UInt8}), rr, pid)
   end
   if status == false
     error(getLastError())
@@ -122,12 +108,15 @@ function getSBML(rr)
   return julia_str
 end
 
+
+
 function getCurrentSBML(rr)
   char_pointer=ccall(dlsym(rrlib, :getCurrentSBML), cdecl, Ptr{UInt8}, (Ptr{Nothing},), rr)
   julia_str=unsafe_string(char_pointer)
   freeText(char_pointer)
   return julia_str
 end
+
 
 function loadSBML(rr::Ptr{Nothing}, sbml::String)
   return ccall(dlsym(rrlib, :loadSBML), cdecl, Bool, (Ptr{Nothing}, Ptr{UInt8}), rr, sbml)
@@ -179,6 +168,7 @@ function getVectorElement(vector::Ptr{RRVector}, index::Int64)
   return value[1]
 end
 
+
 function freeVector(vector::Ptr{RRVector})
   status = ccall(dlsym(rrlib, :freeVector), cdecl, Bool, (Ptr{RRVector},), vector)
   if status == false
@@ -210,12 +200,14 @@ function getGlobalParameterIds(rr)
   return ccall(dlsym(rrlib, :getGlobalParameterIds), cdecl, Ptr{RRStringArray}, (Ptr{Nothing},), rr)
 end
 
+
 function getStringElement(list::Ptr{RRStringArray}, index::Int64)
   char_pointer=ccall(dlsym(rrlib, :getStringElement), cdecl, Ptr{UInt8}, (Ptr{RRStringArray}, Int64), list, index)
   julia_str=unsafe_string(char_pointer)
   freeText(char_pointer)
   return julia_str
 end
+
 
 function freeRRInstance(rr::Ptr{Nothing})
   free_status = ccall(dlsym(rrlib, :freeRRInstance), cdecl, Bool, (Ptr{Nothing},), rr)
@@ -231,8 +223,12 @@ function freeMatrix(matrix::Ptr{RRDoubleMatrix})
   end
 end
 
+
 function getLastError()
-  return unsafe_string(ccall(dlsym(rrlib, :getLastError), cdecl, Ptr{UInt8}, ()))
+  char_pointer = ccall(dlsym(rrlib, :getLastError), cdecl, Ptr{UInt8}, ())
+  julia_str = unsafe_string(char_pointer)
+  freeText(char_pointer)
+  return julia_str
 end
 
 function simulate(rr::Ptr{Nothing})
@@ -269,6 +265,7 @@ end
 function getFloatingSpeciesIds(rr)
   return ccall(dlsym(rrlib, :getFloatingSpeciesIds), cdecl, Ptr{RRStringArray}, (Ptr{Nothing},), rr)
 end
+
 
 function getBoundarySpeciesIds(rr)
   return ccall(dlsym(rrlib, :getBoundarySpeciesIds), cdecl, Ptr{RRStringArray}, (Ptr{Nothing},), rr)
