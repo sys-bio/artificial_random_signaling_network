@@ -9,15 +9,15 @@ using StatsBase # random pick reaction by weight
 disableLoggingToConsole() # try to disable some warnings like NLEQ
 
 # number of floating species
-global nSpecies = 28
+global nSpecies = 15 #28
 # this number excludes the input and output species but includes nSpecies_gene
 #Therefore, the total number of species should be (nSpecies+2)
 
 # maximum number of reactions
-global nRxns = 38
+global nRxns = 15 #38
 
 # number of gene species
-global nSpecies_gene = 16
+global nSpecies_gene = 2 #16
 # some restrictions:s
 # (nSpecies-nSpecies_gene) >= 4 for the case of BIBI
 # nSpecies >= 5 for the case of double catalyzation
