@@ -6,7 +6,7 @@ The script Ground_truth_generation.jl is to generate the artificial random signa
 
 ## Citing
 
-If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/content/10.1101/2020.05.08.084848v1) and the GitHub website (https://github.com/SunnyXu/artificial_random_signaling_network).
+If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/content/10.1101/2020.05.08.084848v2) and the GitHub website (https://github.com/SunnyXu/artificial_random_signaling_network).
 
 ## Using
 
