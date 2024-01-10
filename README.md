@@ -27,10 +27,6 @@ To generate the synthetic networks under the folder synthetic_networks, the Juli
 
 Here is a visualization example by SBcoyote (https://pubmed.ncbi.nlm.nih.gov/37595778/).
 
-<img src="https://raw.githubusercontent.com/SunnyXu/artificial_random_signaling_network/blob/master/visualization_examples/visualization_example.png" width="500" height="400">
-
-
-
-
+<img src="https://raw.githubusercontent.com/SunnyXu/artificial_random_signaling_network/master/visualization_examples/visualization_example.png" width="500" height="400">
 
 
