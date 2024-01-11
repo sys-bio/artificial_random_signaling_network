@@ -2,22 +2,23 @@
 # https://github.com/SunnyXu/artificial_random_signaling_network
 
 cd(dirname(@__FILE__))
-include("rr_funcs-Jin.jl")
+#include("rr_funcs-Jin.jl")
 using Random
+using RoadRunner
 using StatsBase # random pick reaction by weight
 #using Suppressor
-disableLoggingToConsole() # try to disable some warnings like NLEQ
+RoadRunner.disableLoggingToConsole() # try to disable some warnings like NLEQ
 
 # number of floating species
-global nSpecies = 15 #28
+global nSpecies = 15
 # this number excludes the input and output species but includes nSpecies_gene
 #Therefore, the total number of species should be (nSpecies+2)
 
 # maximum number of reactions
-global nRxns = 15 #38
+global nRxns = 22
 
 # number of gene species
-global nSpecies_gene = 2 #16
+global nSpecies_gene = 9
 # some restrictions:s
 # (nSpecies-nSpecies_gene) >= 4 for the case of BIBI
 # nSpecies >= 5 for the case of double catalyzation
@@ -31,10 +32,10 @@ rnd_parameter = 1.
 # doubling the concentration at the input species.
 concentration_perturb = 2.
 # number of sampleNetwork.xml to generate
-sampleSize = 100
+sampleSize = 1
 # i.e. sampleNetwork-1.xml, sampleNetwork-2.xml
 
-setConfigBool("ROADRUNNER_DISABLE_WARNINGS", 1)
+RoadRunner.setConfigBool("ROADRUNNER_DISABLE_WARNINGS", 1)
 function rv_specs(ids_species, ids_rv)
     for i = 1:size(ids_rv)[1]
         if ids_rv[i] in ids_species
@@ -415,48 +416,107 @@ function randomNetwork(nSpecies, nSpecies_gene, nRxns)
 					rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds, "prds" => rcts, "cats" => cats2, "rxn_mech" => rxn_mech2)
 					rxn_counter += 1
 				else rxn_mechanism == "DBCIRCLE"
-                    parameters1 = ["kf_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
-                    parameters2 = ["kf_J$(rxn_counter+1)"]
-                    parameters3 = ["kf_J$(rxn_counter+2)", "K3_J$(rxn_counter+2)", "K4_J$(rxn_counter+2)", "K5_J$(rxn_counter+2)"]
-                    parameters4 = ["kf_J$(rxn_counter+3)"]
-					try
-						ids = sample(species_ids, 3, replace = false)
-						ids_in = sample(species_ids_in, 1, replace = false)
-						append!(species_ids_in, ids)
-					catch
-						temp_ids = collect(1:nSpecies)
-						ids = sample(temp_ids, 3, replace = false)
-						ids_in = sample(species_ids_in, 1, replace = false)
-					end
-					if rand() < 0.5
-						rcts_id  = ids[1]
-						prds_id  = ids[2]
-						prds_id2 = ids[3]
-						cats_id2 = ids_in[1]
-						rcts1 = ["S$rcts_id"]
-						prds1 = ["S$prds_id"]
-						prds2 = ["S$prds_id2"]
-						cats1 = [specs_input_selec]
-						cats2 = ["S$cats_id2"]
-                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech3 = ["S$cats_id2 * (kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-					else
-						rcts_id  = ids[1]
-						prds_id  = ids[2]
-						prds_id2 = ids[3]
-						cats_id  = ids_in[1]
-						rcts1 = ["S$rcts_id"]
-						prds1 = ["S$prds_id"]
-						prds2 = ["S$prds_id2"]
-						cats1 = ["S$cats_id"]
-						cats2 = [specs_input_selec]
-                        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech2 = ["S$cats_id * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-					end
+                    # parameters1 = ["kf_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    # parameters2 = ["kf_J$(rxn_counter+1)"]
+                    # parameters3 = ["kf_J$(rxn_counter+2)", "K3_J$(rxn_counter+2)", "K4_J$(rxn_counter+2)", "K5_J$(rxn_counter+2)"]
+                    # parameters4 = ["kf_J$(rxn_counter+3)"]
+					# try
+					# 	ids = sample(species_ids, 3, replace = false)
+					# 	ids_in = sample(species_ids_in, 1, replace = false)
+					# 	append!(species_ids_in, ids)
+					# catch
+					# 	temp_ids = collect(1:nSpecies)
+					# 	ids = sample(temp_ids, 3, replace = false)
+					# 	ids_in = sample(species_ids_in, 1, replace = false)
+					# end
+					# if rand() < 0.5
+					# 	rcts_id  = ids[1]
+					# 	prds_id  = ids[2]
+					# 	prds_id2 = ids[3]
+					# 	cats_id2 = ids_in[1]
+					# 	rcts1 = ["S$rcts_id"]
+					# 	prds1 = ["S$prds_id"]
+					# 	prds2 = ["S$prds_id2"]
+					# 	cats1 = [specs_input_selec]
+					# 	cats2 = ["S$cats_id2"]
+                    #     rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech3 = ["S$cats_id2 * (kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+                    #     rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+					# else
+					# 	rcts_id  = ids[1]
+					# 	prds_id  = ids[2]
+					# 	prds_id2 = ids[3]
+					# 	cats_id  = ids_in[1]
+					# 	rcts1 = ["S$rcts_id"]
+					# 	prds1 = ["S$prds_id"]
+					# 	prds2 = ["S$prds_id2"]
+					# 	cats1 = ["S$cats_id"]
+					# 	cats2 = [specs_input_selec]
+                    #     rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech2 = ["S$cats_id * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+                    #     rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+					# end
+                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
+                    parameters3 = ["kf_J$(rxn_counter+2)", "kr_J$(rxn_counter+2)", "K1_J$(rxn_counter+2)", "K2_J$(rxn_counter+2)"]
+                    parameters4 = ["kf_J$(rxn_counter+3)", "kr_J$(rxn_counter+3)", "K1_J$(rxn_counter+3)", "K2_J$(rxn_counter+3)"]
+                    try
+                        ids = sample(species_ids, 3, replace = false)
+                        species_ids_in = rv_specs(species_ids_in, ids)
+                        ids_in = sample(species_ids_in, 1, replace = false)
+                        append!(species_ids_in, ids)
+                    catch
+                        temp_ids = collect(1:nSpecies)
+                        temp_ids = rv_specs(temp_ids, specs_input_selec_ids)
+                        ids = sample(temp_ids, 3, replace = false)
+                        species_ids_in = rv_specs(temp_ids, ids)
+                        ids_in = sample(species_ids_in, 1, replace = false)
+                    end
+                    if rand() < 0.5
+                        rcts_id  = ids[1]
+                        prds_id  = ids[2]
+                        prds_id2 = ids[3]
+                        cats_id2 = ids_in[1]
+                        rv_ids = []
+                        append!(rv_ids, rcts_id)
+                        append!(rv_ids, prds_id)
+                        append!(rv_ids, prds_id2)
+                        append!(rv_ids, cats_id2)
+                        species_ids = rv_specs(species_ids, rv_ids)
+                        non_gene_species_ids = rv_specs(non_gene_species_ids, rv_ids)
+                        rcts1 = ["S$rcts_id"]
+                        prds1 = ["S$prds_id"]
+                        prds2 = ["S$prds_id2"]
+                        cats1 = [specs_input_selec]
+                        cats2 = ["S$cats_id2"]
+                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["S$cats_id2*(kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3)*S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3)*S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
+                    else
+                        rcts_id  = ids[1]
+                        prds_id  = ids[2]
+                        prds_id2 = ids[3]
+                        cats_id  = ids_in[1]
+                        rv_ids = []
+                        append!(rv_ids, rcts_id)
+                        append!(rv_ids, prds_id)
+                        append!(rv_ids, prds_id2)
+                        append!(rv_ids, cats_id)
+                        species_ids = rv_specs(species_ids, rv_ids)
+                        non_gene_species_ids = rv_specs(non_gene_species_ids, rv_ids)
+                        rcts1 = ["S$rcts_id"]
+                        prds1 = ["S$prds_id"]
+                        prds2 = ["S$prds_id2"]
+                        cats1 = ["S$cats_id"]
+                        cats2 = [specs_input_selec]
+                        rxn_mech1 = ["S$cats_id  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["S$cats_id  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3)*S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3)*S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
+                    end
 					rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts1, "prds" => prds1, "cats" => cats1, "rxn_mech" => rxn_mech1)
 					rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds1, "prds" => prds2, "cats" => cats1, "rxn_mech" => rxn_mech2)
 					rxn_specs["r$(rxn_counter+2)"] = Dict{String, Array{String, 1}}("parameters" => parameters3, "rcts" => prds2, "prds" => prds1, "cats" => cats2, "rxn_mech" => rxn_mech3)
@@ -603,48 +663,107 @@ function randomNetwork(nSpecies, nSpecies_gene, nRxns)
 					rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds, "prds" => rcts, "cats" => cats2, "rxn_mech" => rxn_mech2)
 					rxn_counter += 1
 				else rxn_mechanism == "DBCIRCLE"
-                    parameters1 = ["kf_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
-                    parameters2 = ["kf_J$(rxn_counter+1)"]
-                    parameters3 = ["kf_J$(rxn_counter+2)", "K3_J$(rxn_counter+2)", "K4_J$(rxn_counter+2)", "K5_J$(rxn_counter+2)"]
-                    parameters4 = ["kf_J$(rxn_counter+3)"]
-					try
-						ids = sample(species_ids, 3, replace = false)
-						ids_in = sample(species_ids_in, 1, replace = false)
-						append!(species_ids_in, ids)
-					catch
-						temp_ids = collect(1:nSpecies)
-						ids = sample(temp_ids, 3, replace = false)
-						ids_in = sample(species_ids_in, 1, replace = false)
-					end
-					if rand() < 0.5
-						rcts_id  = ids[1]
-						prds_id  = ids[2]
-						prds_id2 = ids[3]
-						cats_id2 = ids_in[1]
-						rcts1 = ["S$rcts_id"]
-						prds1 = ["S$prds_id"]
-						prds2 = ["S$prds_id2"]
-						cats1 = [specs_input_selec]
-						cats2 = ["S$cats_id2"]
-                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech3 = ["S$cats_id2*(kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-                        rxn_mech4 = ["S$cats_id2*(kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-					else
-						rcts_id  = ids[1]
-						prds_id  = ids[2]
-						prds_id2 = ids[3]
-						cats_id  = ids_in[1]
-						rcts1 = ["S$rcts_id"]
-						prds1 = ["S$prds_id"]
-						prds2 = ["S$prds_id2"]
-						cats1 = ["S$cats_id"]
-						cats2 = [specs_input_selec]
-                        rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech2 = ["S$cats_id * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
-                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
-					end
+                    # parameters1 = ["kf_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    # parameters2 = ["kf_J$(rxn_counter+1)"]
+                    # parameters3 = ["kf_J$(rxn_counter+2)", "K3_J$(rxn_counter+2)", "K4_J$(rxn_counter+2)", "K5_J$(rxn_counter+2)"]
+                    # parameters4 = ["kf_J$(rxn_counter+3)"]
+					# try
+					# 	ids = sample(species_ids, 3, replace = false)
+					# 	ids_in = sample(species_ids_in, 1, replace = false)
+					# 	append!(species_ids_in, ids)
+					# catch
+					# 	temp_ids = collect(1:nSpecies)
+					# 	ids = sample(temp_ids, 3, replace = false)
+					# 	ids_in = sample(species_ids_in, 1, replace = false)
+					# end
+					# if rand() < 0.5
+					# 	rcts_id  = ids[1]
+					# 	prds_id  = ids[2]
+					# 	prds_id2 = ids[3]
+					# 	cats_id2 = ids_in[1]
+					# 	rcts1 = ["S$rcts_id"]
+					# 	prds1 = ["S$prds_id"]
+					# 	prds2 = ["S$prds_id2"]
+					# 	cats1 = [specs_input_selec]
+					# 	cats2 = ["S$cats_id2"]
+                    #     rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech3 = ["S$cats_id2*(kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+                    #     rxn_mech4 = ["S$cats_id2*(kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+					# else
+					# 	rcts_id  = ids[1]
+					# 	prds_id  = ids[2]
+					# 	prds_id2 = ids[3]
+					# 	cats_id  = ids_in[1]
+					# 	rcts1 = ["S$rcts_id"]
+					# 	prds1 = ["S$prds_id"]
+					# 	prds2 = ["S$prds_id2"]
+					# 	cats1 = ["S$cats_id"]
+					# 	cats2 = [specs_input_selec]
+                    #     rxn_mech1 = ["S$cats_id * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech2 = ["S$cats_id * (kf_J$(rxn_counter+1)*S$prds_id/K2_J$rxn_counter)/(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                    #     rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K3_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+                    #     rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3)*S$prds_id/K4_J$(rxn_counter+2))/(1 + S$prds_id2/K3_J$(rxn_counter+2) + S$prds_id/K4_J$(rxn_counter+2) + S$rcts_id/K5_J$(rxn_counter+2))"]
+					# end
+                    parameters1 = ["kf_J$rxn_counter", "kr_J$rxn_counter", "K1_J$rxn_counter", "K2_J$rxn_counter"]
+                    parameters2 = ["kf_J$(rxn_counter+1)", "kr_J$(rxn_counter+1)", "K1_J$(rxn_counter+1)", "K2_J$(rxn_counter+1)"]
+                    parameters3 = ["kf_J$(rxn_counter+2)", "kr_J$(rxn_counter+2)", "K1_J$(rxn_counter+2)", "K2_J$(rxn_counter+2)"]
+                    parameters4 = ["kf_J$(rxn_counter+3)", "kr_J$(rxn_counter+3)", "K1_J$(rxn_counter+3)", "K2_J$(rxn_counter+3)"]
+                    try
+                        ids = sample(species_ids, 3, replace = false)
+                        species_ids_in = rv_specs(species_ids_in, ids)
+                        ids_in = sample(species_ids_in, 1, replace = false)
+                        append!(species_ids_in, ids)
+                    catch
+                        temp_ids = collect(1:nSpecies)
+                        temp_ids = rv_specs(temp_ids, specs_input_selec_ids)
+                        ids = sample(temp_ids, 3, replace = false)
+                        species_ids_in = rv_specs(temp_ids, ids)
+                        ids_in = sample(species_ids_in, 1, replace = false)
+                    end
+                    if rand() < 0.5
+                        rcts_id  = ids[1]
+                        prds_id  = ids[2]
+                        prds_id2 = ids[3]
+                        cats_id2 = ids_in[1]
+                        rv_ids = []
+                        append!(rv_ids, rcts_id)
+                        append!(rv_ids, prds_id)
+                        append!(rv_ids, prds_id2)
+                        append!(rv_ids, cats_id2)
+                        species_ids = rv_specs(species_ids, rv_ids)
+                        non_gene_species_ids = rv_specs(non_gene_species_ids, rv_ids)
+                        rcts1 = ["S$rcts_id"]
+                        prds1 = ["S$prds_id"]
+                        prds2 = ["S$prds_id2"]
+                        cats1 = [specs_input_selec]
+                        cats2 = ["S$cats_id2"]
+                        rxn_mech1 = ["$specs_input_selec  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["$specs_input_selec  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["S$cats_id2 * (kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["S$cats_id2 * (kf_J$(rxn_counter+3)*S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3)*S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
+                    else
+                        rcts_id  = ids[1]
+                        prds_id  = ids[2]
+                        prds_id2 = ids[3]
+                        cats_id  = ids_in[1]
+                        rv_ids = []
+                        append!(rv_ids, rcts_id)
+                        append!(rv_ids, prds_id)
+                        append!(rv_ids, prds_id2)
+                        append!(rv_ids, cats_id)
+                        species_ids = rv_specs(species_ids, rv_ids)
+                        non_gene_species_ids = rv_specs(non_gene_species_ids, rv_ids)
+                        rcts1 = ["S$rcts_id"]
+                        prds1 = ["S$prds_id"]
+                        prds2 = ["S$prds_id2"]
+                        cats1 = ["S$cats_id"]
+                        cats2 = [specs_input_selec]
+                        rxn_mech1 = ["S$cats_id  * (kf_J$rxn_counter*S$rcts_id/K1_J$rxn_counter - kr_J$rxn_counter*S$prds_id/K2_J$rxn_counter) /(1 + S$rcts_id/K1_J$rxn_counter + S$prds_id/K2_J$rxn_counter)"]
+                        rxn_mech2 = ["S$cats_id  * (kf_J$(rxn_counter+1)*S$prds_id/K1_J$(rxn_counter+1) - kr_J$(rxn_counter+1)*S$prds_id2/K2_J$(rxn_counter+1)) /(1 + S$prds_id/K1_J$(rxn_counter+1) + S$prds_id2/K2_J$(rxn_counter+1))"]
+                        rxn_mech3 = ["$specs_input_selec * (kf_J$(rxn_counter+2)*S$prds_id2/K1_J$(rxn_counter+2) - kr_J$(rxn_counter+2)*S$prds_id/K2_J$(rxn_counter+2)) /(1 + S$prds_id2/K1_J$(rxn_counter+2) + S$prds_id/K2_J$(rxn_counter+2))"]
+                        rxn_mech4 = ["$specs_input_selec * (kf_J$(rxn_counter+3) * S$prds_id/K1_J$(rxn_counter+3) - kr_J$(rxn_counter+3) * S$rcts_id/K2_J$(rxn_counter+3)) /(1 + S$prds_id/K1_J$(rxn_counter+3) + S$rcts_id/K2_J$(rxn_counter+3))"]
+                    end
 					rxn_specs["r$rxn_counter"]     = Dict{String, Array{String, 1}}("parameters" => parameters1, "rcts" => rcts1, "prds" => prds1, "cats" => cats1, "rxn_mech" => rxn_mech1)
 					rxn_specs["r$(rxn_counter+1)"] = Dict{String, Array{String, 1}}("parameters" => parameters2, "rcts" => prds1, "prds" => prds2, "cats" => cats1, "rxn_mech" => rxn_mech2)
 					rxn_specs["r$(rxn_counter+2)"] = Dict{String, Array{String, 1}}("parameters" => parameters3, "rcts" => prds2, "prds" => prds1, "cats" => cats2, "rxn_mech" => rxn_mech3)
@@ -768,166 +887,179 @@ function randomNetwork(nSpecies, nSpecies_gene, nRxns)
 end
 
 function negativeConcentration(rr)
-    C_S = getFloatingSpeciesConcentrations(rr)
-    nSpecies_boundary = getNumberOfBoundarySpecies(rr)
-    nSpecies_floating = getNumberOfFloatingSpecies(rr)
+    C_S = RoadRunner.getFloatingSpeciesConcentrations(rr)
+    nSpecies_boundary = RoadRunner.getNumberOfBoundarySpecies(rr)
+    nSpecies_floating = RoadRunner.getNumberOfFloatingSpecies(rr)
     neg_c = 0
-    for i = 0:(nSpecies_floating-1)
-        C_element = getVectorElement(C_S, i)
+    #for i = 0:(nSpecies_floating-1)
+	for i = 1:nSpecies_floating
+        #C_element = getVectorElement(C_S, i)
+		C_element = C_S[i]
         if C_element < 0
             neg_c = 1
         end
     end
-    freeVector(C_S)
-    C_B = getBoundarySpeciesConcentrations(rr)
-    for i = 0:(nSpecies_boundary-1)
-        C_element = getVectorElement(C_B, i)
+    #freeVector(C_S)
+    C_B = RoadRunner.getBoundarySpeciesConcentrations(rr)
+    #for i = 0:(nSpecies_boundary-1)
+	for i = 1:nSpecies_boundary
+        #C_element = getVectorElement(C_B, i)
+		C_element = C_B[i]
         if C_element < 0
             neg_c = 1
         end
     end
-    freeVector(C_B)
+    #freeVector(C_B)
     return neg_c
 end
 
 
 # Main code starts from here
-goodSample = 0
-while goodSample < sampleSize
-    global species = ["S$i" for i = 1:nSpecies]
-    global gene_species = species[1:nSpecies_gene]
-    global rr_real = createRRInstance()
+f = open("timer.txt", "w+");
+tim=@elapsed begin # @elapsed returns time in second
+    goodSample = 0
+    while goodSample < sampleSize
+        global species = ["S$i" for i = 1:nSpecies]
+        global gene_species = species[1:nSpecies_gene]
+        global rr_real = RoadRunner.createRRInstance()
 
-    addCompartment(rr_real, "compartment", 1.0, false)
+        RoadRunner.addCompartment(rr_real, "compartment", 1.0, false)
 
-    for s in species
-        addSpecies(rr_real, s, "compartment", 0.1, "", false)
-        setBoundary(rr_real, s, false, false)
-    end
-    addSpecies(rr_real, "S_in", "compartment", 0.1, "", false)
-
-    setBoundary(rr_real, "S_in", true, false)
-    #default is boundary species
-
-    addSpecies(rr_real, "S_out", "compartment", 0.1, "", false)
-
-    setBoundary(rr_real, "S_out", false, false)
-
-    try
-        (rxn_specs, eff_steps) = randomNetwork(nSpecies, nSpecies_gene, nRxns)
-
-        st = zeros((nSpecies, nRxns))
-        for i = 1: rxn_counter
-            rct_list = rxn_specs["r$i"]["rcts"]
-            prd_list = rxn_specs["r$i"]["prds"]
-            rct_num = size(rct_list)[1]
-            prd_num = size(prd_list)[1]
-            for j = 1: rct_num
-                for k = 1 : nSpecies
-                    if rct_list[j] == "S$k"
-                        st[k,i] = -1
-                    end
-                end
-            end
-            for j = 1: prd_num
-                for k = 1: nSpecies
-                    if prd_list[j] == "S$k"
-                        st[k,i] = 1
-                    end
-                end
-            end
+        for s in species
+            RoadRunner.addSpecies(rr_real, s, "compartment", 0.1, "", false)
+            RoadRunner.setBoundary(rr_real, s, false, false)
         end
+        RoadRunner.addSpecies(rr_real, "S_in", "compartment", 0.1, "", false)
 
-        for i = 1: nSpecies
-            x = st[[i],:]
-            if all(==(0), x)
+        RoadRunner.setBoundary(rr_real, "S_in", true, false)
+        #default is boundary species
 
-            else
-                if all(>=(0), x)
-                    setBoundary(rr_real, "S$i", true, false)
-                elseif all(<=(0), x)
-                    setBoundary(rr_real, "S$i", true, false)
-                end
-            end
-        end
+        RoadRunner.addSpecies(rr_real, "S_out", "compartment", 0.1, "", false)
 
-        for i = 1: nRxns
-            parameters = rxn_specs["r$i"]["parameters"]
-            parameters_len = size(parameters)[1]
-            for j = 1:parameters_len
-                addParameter(rr_real, parameters[j], 0.1, false)
-            end
-        end
+        RoadRunner.setBoundary(rr_real, "S_out", false, false)
 
-        for i = 1: nRxns
-            rcts = rxn_specs["r$i"]["rcts"]
-            prds = rxn_specs["r$i"]["prds"]
-            rxn_mech = rxn_specs["r$i"]["rxn_mech"]
-            i == nRxns ? regen = true : regen = false
-            addReaction(rr_real, "r$i", rcts, prds, rxn_mech[1], regen)
-        end
-
-        P_num = getNumberOfGlobalParameters(rr_real)
-        nSpecies_boundary = getNumberOfBoundarySpecies(rr_real)
-        nSpecies_floating = getNumberOfFloatingSpecies(rr_real)
-        #assign random values to spieces and parameters
-        for i = 0:(nSpecies_floating-1)
-            setFloatingSpeciesInitialConcentrationByIndex(rr_real, i, rnd_species*rand()) # random number [0,1)
-        end
-        for i = 0:(nSpecies_boundary-1)
-            setBoundarySpeciesByIndex(rr_real, i, rnd_species*rand())
-        end
-        for i = 0:(P_num-1)
-            setGlobalParameterByIndex(rr_real, i, rnd_parameter*rand())
-        end
-
-        ##save sbml files before steadyState
-        sbml_sample0 = getCurrentSBML(rr_real)
-        f_sample0 = open("sampleNetwork0-$(goodSample+1).xml", "w+");
-        write(f_sample0, sbml_sample0)
-        close(f_sample0)
-
-        setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
-        # Check if the ground truth model has a steady state
         try
-            steadyState(rr_real)
-            #check if it is a valid steadystated
-            neg_c = negativeConcentration(rr_real)
-            if neg_c == 0
-                C_B = getBoundarySpeciesConcentrations(rr_real)
-                C_Sin = getVectorElement(C_B, nSpecies_boundary-1)
-                C_S = getFloatingSpeciesConcentrations(rr_real)
-                C_Sout = getVectorElement(C_S, nSpecies_floating-1)
-                freeVector(C_B)
-                freeVector(C_S)
-                setBoundarySpeciesByIndex(rr_real, nSpecies_boundary-1, C_Sin*concentration_perturb)
+            (rxn_specs, eff_steps) = randomNetwork(nSpecies, nSpecies_gene, nRxns)
 
-                setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
-                try
-                    steadyState(rr_real)
-                    C_S = getFloatingSpeciesConcentrations(rr_real)
-                    C_Sout_after = getVectorElement(C_S, nSpecies_floating-1)
-                    C_Sout_change = C_Sout_after - C_Sout
-                    freeVector(C_S)
-                    if (abs.(C_Sout_change) > 0 && eff_steps >= 3)
-                        global goodSample += 1
-                        sbml_sample = getCurrentSBML(rr_real)
-                        f_sample = open("sampleNetwork-$goodSample.xml", "w+");
-                        write(f_sample, sbml_sample)
-                        close(f_sample)
+            st = zeros((nSpecies, nRxns))
+            for i = 1: rxn_counter
+                rct_list = rxn_specs["r$i"]["rcts"]
+                prd_list = rxn_specs["r$i"]["prds"]
+                rct_num = size(rct_list)[1]
+                prd_num = size(prd_list)[1]
+                for j = 1: rct_num
+                    for k = 1 : nSpecies
+                        if rct_list[j] == "S$k"
+                            st[k,i] = -1
+                        end
                     end
-                catch e
-                    continue
                 end
-            else
+                for j = 1: prd_num
+                    for k = 1: nSpecies
+                        if prd_list[j] == "S$k"
+                            st[k,i] = 1
+                        end
+                    end
+                end
+            end
+
+            for i = 1: nSpecies
+                x = st[[i],:]
+                if all(==(0), x)
+
+                else
+                    if all(>=(0), x)
+                        RoadRunner.setBoundary(rr_real, "S$i", true, false)
+                    elseif all(<=(0), x)
+                        RoadRunner.setBoundary(rr_real, "S$i", true, false)
+                    end
+                end
+            end
+
+            for i = 1: nRxns
+                parameters = rxn_specs["r$i"]["parameters"]
+                parameters_len = size(parameters)[1]
+                for j = 1:parameters_len
+                    RoadRunner.addParameter(rr_real, parameters[j], 0.1, false)
+                end
+            end
+
+            for i = 1: nRxns
+                rcts = rxn_specs["r$i"]["rcts"]
+                prds = rxn_specs["r$i"]["prds"]
+                rxn_mech = rxn_specs["r$i"]["rxn_mech"]
+                i == nRxns ? regen = true : regen = false
+                RoadRunner.addReaction(rr_real, "r$i", rcts, prds, rxn_mech[1], regen)
+            end
+
+            P_num = RoadRunner.getNumberOfGlobalParameters(rr_real)
+            nSpecies_boundary = RoadRunner.getNumberOfBoundarySpecies(rr_real)
+            nSpecies_floating = RoadRunner.getNumberOfFloatingSpecies(rr_real)
+            #assign random values to spieces and parameters
+            for i = 0:(nSpecies_floating-1)
+                RoadRunner.setFloatingSpeciesInitialConcentrationByIndex(rr_real, i, rnd_species*rand()) # random number [0,1)
+            end
+            for i = 0:(nSpecies_boundary-1)
+                RoadRunner.setBoundarySpeciesByIndex(rr_real, i, rnd_species*rand())
+            end
+            for i = 0:(P_num-1)
+                RoadRunner.setGlobalParameterByIndex(rr_real, i, rnd_parameter*rand())
+            end
+
+			neg_c = negativeConcentration(rr_real)
+			if neg_c == 0
+				##save sbml files before steadyState
+			    sbml_sample0 = RoadRunner.getCurrentSBML(rr_real)
+				f_sample0 = open("sampleNetwork0-$(goodSample+1).xml", "w+");
+				write(f_sample0, sbml_sample0)
+				close(f_sample0)
+
+				RoadRunner.setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
+				# Check if the ground truth model has a steady state
+				try
+					RoadRunner.steadyState(rr_real)
+					#check if it is a valid steadystated
+                    C_B = RoadRunner.getBoundarySpeciesConcentrations(rr_real)
+                    #C_Sin = getVectorElement(C_B, nSpecies_boundary-1)
+                    C_Sin = C_B[nSpecies_boundary]
+                    C_S = RoadRunner.getFloatingSpeciesConcentrations(rr_real)
+                    #C_Sout = getVectorElement(C_S, nSpecies_floating-1)
+                    C_Sout = C_S[nSpecies_floating]
+                    #freeVector(C_B)
+                    #freeVector(C_S)
+                    RoadRunner.setBoundarySpeciesByIndex(rr_real, nSpecies_boundary-1, C_Sin*concentration_perturb)
+
+                    RoadRunner.setConfigInt("LOADSBMLOPTIONS_CONSERVED_MOIETIES", 1)
+                    try
+                        RoadRunner.steadyState(rr_real)
+                        C_S = RoadRunner.getFloatingSpeciesConcentrations(rr_real)
+                        #C_Sout_after = getVectorElement(C_S, nSpecies_floating-1)
+                        C_Sout_after = C_S[nSpecies_floating]
+                        C_Sout_change = C_Sout_after - C_Sout
+                        #freeVector(C_S)
+                        if (abs.(C_Sout_change) > 0 && eff_steps >= 3)
+                            global goodSample += 1
+                            sbml_sample = RoadRunner.getCurrentSBML(rr_real)
+                            f_sample = open("sampleNetwork-$goodSample.xml", "w+");
+                            write(f_sample, sbml_sample)
+                            close(f_sample)
+                        end
+                    catch e
+                        continue
+                    end
+
+				catch e
+					continue
+				end
+		    else
                 println("Error message: negative concentrations")
             end
         catch e
-            continue
+            println(e)
+        finally
+            RoadRunner.freeRRInstance(rr_real)
         end
-    catch e
-        println(e)
-    finally
-        freeRRInstance(rr_real)
-	end
+    end
 end
+write(f, "$tim\n");
+close(f);
