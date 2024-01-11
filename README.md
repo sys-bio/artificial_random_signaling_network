@@ -10,7 +10,7 @@ If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/co
 
 ## Using
 
-To use the Julia script, first install Julia by going to the Julia website (https://julialang.org/). Once you have the Julia console open, make sure you have "RoadRunner" installed by typing `using Pkg` followed by `Pkg.add("RoadRunner")`. RoadRunner.jl is a Julia package for the library of libRoadRunner that is used to provide SBML simulation support. Follow the Julia warnings to install other necessary Julia packages if has not been installed already.
+To use the Julia script, first install Julia by going to the Julia website (https://julialang.org/). Once you have the Julia console open, make sure you have "RoadRunner" installed by typing `import Pkg` followed by `Pkg.add("RoadRunner")`. RoadRunner.jl is a Julia package for the library of libRoadRunner that is used to provide SBML simulation support. Follow the Julia warnings to install other necessary Julia packages if has not been installed already.
 
 Next, download the Julia script from Github (https://github.com/SunnyXu/artificial_random_signaling_network/blob/master/Ground_truth_generation.jl) into one folder. At the Julia console type:
 `include("pathto\\Ground_truth_generation.jl")`
