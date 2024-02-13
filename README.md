@@ -10,7 +10,7 @@ If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/co
 
 ## Using
 
-To use the Julia script, first install Julia by going to the Julia website (https://julialang.org/). Once you have the Julia console open, make sure you have "RoadRunner" installed by typing `import Pkg` followed by `Pkg.add("RoadRunner")`. RoadRunner.jl is a Julia package for the library of libRoadRunner that is used to provide SBML simulation support. Follow the Julia warnings to install other necessary Julia packages if they have not been installed already.
+To use the Julia script, first install Julia by going to the Julia website (https://julialang.org/). Once you have the Julia console open, make sure you have "RoadRunner" installed by typing `import Pkg` followed by `Pkg.add(name = "RoadRunner", version = "0.1.2")`. RoadRunner.jl is a Julia package for the library of libRoadRunner that is used to provide SBML simulation support. ***Note that the dependency RoadRunner.jl is only applicable on Windows and Linux, so users cannot run the provided Julia script on Mac until an update from RoadRunner.jl***. Follow the Julia warnings to install other necessary Julia packages if they have not been installed already.
 
 Next, download the Julia script from Github (https://github.com/SunnyXu/artificial_random_signaling_network/blob/master/Ground_truth_generation.jl) into one folder. At the Julia console type:
 `include("pathto\\Ground_truth_generation.jl")`
@@ -21,7 +21,7 @@ to run the main script. Note that "pathto" was the path where you saved the netw
 3) "concentration_perturb" could be used to set the factor that perturbs the concentration at the input species. Default was set to 2.
 4) The number of random networks to generate could be set by changing the variable "sampleSize". 
 
-To generate the synthetic networks under the folder synthetic_networks, the Julia script was implemented in Julia 1.6 on Windows 10. Note that the dependency RoadRunner.jl is only applicable on Windows and Linux, so users cannot run the provided Julia script on Mac until an update from RoadRunner.jl.
+To generate the synthetic networks under the folder synthetic_networks, the Julia script was implemented in Julia 1.6 on Windows 10 with RoadRunner.jl version 0.1.2. 
 
 ## Visualization Example
 
