@@ -7,11 +7,11 @@ random signaling networks with adjustable parameters, and also provides topologi
 
 ## Citing
 
-If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/content/10.1101/2020.05.08.084848) and the GitHub website (https://github.com/SunnyXu/artificial_random_signaling_network).
+If you use any of the codes, please cite the bioRxiv (https://www.biorxiv.org/content/10.1101/2020.05.08.084848).
 
 ## Documentation
 
-Please see the documentation at https://SunnyXu.github.io/artificial_random_signaling_network/ for details.
+Please see the documentation at https://sys-bio.github.io/artificial_random_signaling_network/ for details.
 
 ## Visualization Example
 
