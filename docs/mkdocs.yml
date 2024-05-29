@@ -1,0 +1,11 @@
+site_name: artificial_random_signaling_network
+site_url: https://github.com/SunnyXu/artificial_random_signaling_network
+site_description: Description...
+site_author:      Jin Xu
+ 
+docs_dir: '_build/html'
+
+theme: readthedocs
+
+nav:
+    - Home: index.html
