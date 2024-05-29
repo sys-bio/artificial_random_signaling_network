@@ -56,7 +56,7 @@ For example, to analyze a set of SBML files of signaling networks downloaded fro
 
 - First of all, create a folder Biomodels as on GitHub (https://github.com/sys-bio/artificial_random_signaling_network/tree/master/topology_analysis/distance_dist/Biomodels).
 
-- Then, put the `zip file <https://github.com/sys-bio/artificial_random_signaling_network/blob/master/topology_analysis/distance_dist/Biomodels/Biomodels.zip>`_ of the SBML files into the folder.
+- Then, put the `zip file <https://github.com/sys-bio/artificial_random_signaling_network/blob/master/topology_analysis/degree_dist/Biomodels/Biomodels.zip>`_ of the SBML files into the folder.
 
 - Finally, run the Python script `rxn_distance_dist.py <https://github.com/sys-bio/artificial_random_signaling_network/blob/master/topology_analysis/distance_dist/Biomodels/rxn_distance_dist.py>`_.
 
