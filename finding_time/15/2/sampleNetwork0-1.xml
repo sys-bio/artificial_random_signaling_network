@@ -5,101 +5,105 @@
       <compartment id="compartment" size="1" constant="false"/>
     </listOfCompartments>
     <listOfSpecies>
-      <species id="S1" compartment="compartment" initialAmount="3.86526113266313" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false"/>
-      <species id="S2" compartment="compartment" initialAmount="4.63104015810685" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false"/>
-      <species id="S3" compartment="compartment" initialAmount="2.55856677897033" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S4" compartment="compartment" initialAmount="5.4553290300771" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false"/>
-      <species id="S5" compartment="compartment" initialAmount="8.76052022083301" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S6" compartment="compartment" initialAmount="6.91106288171009" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S7" compartment="compartment" initialAmount="5.70966785100066" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S8" compartment="compartment" initialAmount="2.48051864806768" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S9" compartment="compartment" initialAmount="4.68357562931813" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S10" compartment="compartment" initialAmount="5.94925639628378" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S11" compartment="compartment" initialAmount="1.7973578414529" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S12" compartment="compartment" initialAmount="0.589008423725137" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S13" compartment="compartment" initialAmount="5.07919112250734" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S14" compartment="compartment" initialAmount="6.16561103225392" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S15" compartment="compartment" initialAmount="7.70122831933641" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
-      <species id="S_in" compartment="compartment" initialAmount="3.97796453704614" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false"/>
-      <species id="S_out" compartment="compartment" initialAmount="4.15286833779337" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S1" compartment="compartment" initialAmount="1.28609457693038" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S2" compartment="compartment" initialAmount="0.463219966375529" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S3" compartment="compartment" initialAmount="2.52136493665176" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S4" compartment="compartment" initialAmount="0.634103290576161" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S5" compartment="compartment" initialAmount="2.41545036818694" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false"/>
+      <species id="S6" compartment="compartment" initialAmount="9.25025555042606" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S7" compartment="compartment" initialAmount="1.76478212082158" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S8" compartment="compartment" initialAmount="7.60440560726268" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S9" compartment="compartment" initialAmount="2.86567006670476" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S10" compartment="compartment" initialAmount="5.3002949194047" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S11" compartment="compartment" initialAmount="2.37327371475373" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S12" compartment="compartment" initialAmount="7.4793380613102" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S13" compartment="compartment" initialAmount="3.36012245314975" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S14" compartment="compartment" initialAmount="2.48493722929216" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S15" compartment="compartment" initialAmount="4.77003649416153" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="S_in" compartment="compartment" initialAmount="9.76727605103676" hasOnlySubstanceUnits="true" boundaryCondition="true" constant="false"/>
+      <species id="S_out" compartment="compartment" initialAmount="9.26093068303979" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
     </listOfSpecies>
     <listOfParameters>
-      <parameter id="kf_J1" value="0.544862055466179" constant="false"/>
-      <parameter id="kr_J1" value="0.0265765223745571" constant="false"/>
-      <parameter id="kf_J2" value="0.624000770880478" constant="false"/>
-      <parameter id="kr_J2" value="0.701781764729641" constant="false"/>
-      <parameter id="K1_J2" value="0.984735331398012" constant="false"/>
-      <parameter id="K2_J2" value="0.600834846192273" constant="false"/>
-      <parameter id="kf_J3" value="0.759339378437135" constant="false"/>
-      <parameter id="kr_J3" value="0.614288100864192" constant="false"/>
-      <parameter id="K1_J3" value="0.738378690987097" constant="false"/>
-      <parameter id="K2_J3" value="0.679162621464202" constant="false"/>
-      <parameter id="kf_J4" value="0.898086595546412" constant="false"/>
-      <parameter id="kr_J4" value="0.9411064661331" constant="false"/>
-      <parameter id="K1_J4" value="0.965258117974048" constant="false"/>
-      <parameter id="K2_J4" value="0.845326388880952" constant="false"/>
-      <parameter id="kf_J5" value="0.680838206084053" constant="false"/>
-      <parameter id="kr_J5" value="0.806231361198663" constant="false"/>
-      <parameter id="kf_J6" value="0.134999843351361" constant="false"/>
-      <parameter id="kr_J6" value="0.550774637435319" constant="false"/>
-      <parameter id="kf_J7" value="0.186825336367636" constant="false"/>
-      <parameter id="kr_J7" value="0.0671200775700684" constant="false"/>
-      <parameter id="kf_J8" value="0.880055367652062" constant="false"/>
-      <parameter id="kr_J8" value="0.136565834033545" constant="false"/>
-      <parameter id="K1_J8" value="0.256814859654625" constant="false"/>
-      <parameter id="K2_J8" value="0.672522281101928" constant="false"/>
-      <parameter id="kf_J9" value="0.173306840792598" constant="false"/>
-      <parameter id="kr_J9" value="0.578156862763217" constant="false"/>
-      <parameter id="K1_J9" value="0.467363690857872" constant="false"/>
-      <parameter id="K2_J9" value="0.629588297757406" constant="false"/>
-      <parameter id="kf_J10" value="0.931255408066652" constant="false"/>
-      <parameter id="kr_J10" value="0.634861462481705" constant="false"/>
-      <parameter id="K1_J10" value="0.827820110436802" constant="false"/>
-      <parameter id="K2_J10" value="0.964141094398693" constant="false"/>
-      <parameter id="kf_J11" value="0.881928873398949" constant="false"/>
-      <parameter id="kr_J11" value="0.126072502258406" constant="false"/>
-      <parameter id="K1_J11" value="0.962952583053459" constant="false"/>
-      <parameter id="K2_J11" value="0.930948303145091" constant="false"/>
-      <parameter id="kf_J12" value="0.0865848405800203" constant="false"/>
-      <parameter id="kr_J12" value="0.274220767151029" constant="false"/>
-      <parameter id="kf_J13" value="0.979814806638272" constant="false"/>
-      <parameter id="kr_J13" value="0.52011996583977" constant="false"/>
-      <parameter id="kf_J14" value="0.338334088729588" constant="false"/>
-      <parameter id="kr_J14" value="0.316135151550253" constant="false"/>
-      <parameter id="K1_J14" value="0.134710627587638" constant="false"/>
-      <parameter id="K2_J14" value="0.350596446268904" constant="false"/>
-      <parameter id="kf_J15" value="0.354585544340591" constant="false"/>
-      <parameter id="kr_J15" value="0.504189361944674" constant="false"/>
-      <parameter id="K1_J15" value="0.614145401860754" constant="false"/>
-      <parameter id="K2_J15" value="0.92019238414855" constant="false"/>
-      <parameter id="kf_J16" value="0.652683005482437" constant="false"/>
-      <parameter id="kr_J16" value="0.281357075010598" constant="false"/>
-      <parameter id="K1_J16" value="0.0370317741549391" constant="false"/>
-      <parameter id="K2_J16" value="0.993761020264313" constant="false"/>
-      <parameter id="kf_J17" value="0.288579156975779" constant="false"/>
-      <parameter id="kr_J17" value="0.0474463909542593" constant="false"/>
-      <parameter id="K1_J17" value="0.760477354099876" constant="false"/>
-      <parameter id="K2_J17" value="0.951699541760237" constant="false"/>
-      <parameter id="kf_J18" value="0.165655491298474" constant="false"/>
-      <parameter id="kr_J18" value="0.00417125662628548" constant="false"/>
-      <parameter id="K1_J18" value="0.301181652637907" constant="false"/>
-      <parameter id="K2_J18" value="0.291003626510621" constant="false"/>
-      <parameter id="kf_J19" value="0.638054543795722" constant="false"/>
-      <parameter id="kr_J19" value="0.647623193834394" constant="false"/>
-      <parameter id="K1_J19" value="0.17390218865099" constant="false"/>
-      <parameter id="K2_J19" value="0.375850547667472" constant="false"/>
-      <parameter id="kf_J20" value="0.693931474253262" constant="false"/>
-      <parameter id="kr_J20" value="0.358745210479233" constant="false"/>
-      <parameter id="K1_J20" value="0.162693379389315" constant="false"/>
-      <parameter id="K2_J20" value="0.57280537944012" constant="false"/>
-      <parameter id="kf_J21" value="0.116784861236453" constant="false"/>
-      <parameter id="kr_J21" value="0.5876691314704" constant="false"/>
-      <parameter id="K1_J21" value="0.956634767374387" constant="false"/>
-      <parameter id="K2_J21" value="0.880062859283164" constant="false"/>
-      <parameter id="kf_J22" value="0.882190958367619" constant="false"/>
-      <parameter id="kr_J22" value="0.425264685956533" constant="false"/>
-      <parameter id="K1_J22" value="0.92862290629147" constant="false"/>
-      <parameter id="K2_J22" value="0.439787488737978" constant="false"/>
+      <parameter id="kf_J1" value="0.905194057938178" constant="false"/>
+      <parameter id="kr_J1" value="0.047698582371803" constant="false"/>
+      <parameter id="kf_J2" value="0.83870255834571" constant="false"/>
+      <parameter id="kr_J2" value="0.622131562761072" constant="false"/>
+      <parameter id="K1_J2" value="0.0179182318877358" constant="false"/>
+      <parameter id="K2_J2" value="0.415857745068382" constant="false"/>
+      <parameter id="kf_J3" value="0.446310200804077" constant="false"/>
+      <parameter id="kr_J3" value="0.648070768808632" constant="false"/>
+      <parameter id="K1_J3" value="0.848542407447289" constant="false"/>
+      <parameter id="K2_J3" value="0.647472700382684" constant="false"/>
+      <parameter id="kf_J4" value="0.345477589711383" constant="false"/>
+      <parameter id="kr_J4" value="0.385598416767978" constant="false"/>
+      <parameter id="kf_J5" value="0.0303494570388125" constant="false"/>
+      <parameter id="kr_J5" value="0.211458035887394" constant="false"/>
+      <parameter id="kf_J6" value="0.248014819123289" constant="false"/>
+      <parameter id="kr_J6" value="0.728379281936709" constant="false"/>
+      <parameter id="K1_J6" value="0.971546539386114" constant="false"/>
+      <parameter id="K2_J6" value="0.691257154787616" constant="false"/>
+      <parameter id="kf_J7" value="0.616743209286362" constant="false"/>
+      <parameter id="kr_J7" value="0.587265061250236" constant="false"/>
+      <parameter id="kf_J8" value="0.722676967010864" constant="false"/>
+      <parameter id="kr_J8" value="0.837914291632264" constant="false"/>
+      <parameter id="K1_J8" value="0.0533689076522645" constant="false"/>
+      <parameter id="K2_J8" value="0.660689831795765" constant="false"/>
+      <parameter id="kf_J9" value="0.877564030079164" constant="false"/>
+      <parameter id="kr_J9" value="0.886017799890785" constant="false"/>
+      <parameter id="K1_J9" value="0.214569885037299" constant="false"/>
+      <parameter id="K2_J9" value="0.483341598850565" constant="false"/>
+      <parameter id="kf_J10" value="0.442229848288099" constant="false"/>
+      <parameter id="kr_J10" value="0.658412052749868" constant="false"/>
+      <parameter id="K1_J10" value="0.248960711484498" constant="false"/>
+      <parameter id="K2_J10" value="0.0922963755341033" constant="false"/>
+      <parameter id="kf_J11" value="0.15710952383309" constant="false"/>
+      <parameter id="kr_J11" value="0.514622671996545" constant="false"/>
+      <parameter id="K1_J11" value="0.913153326496568" constant="false"/>
+      <parameter id="K2_J11" value="0.987076282621645" constant="false"/>
+      <parameter id="kf_J12" value="0.390569417134084" constant="false"/>
+      <parameter id="kr_J12" value="0.33002008932487" constant="false"/>
+      <parameter id="K1_J12" value="0.420188668331461" constant="false"/>
+      <parameter id="K2_J12" value="0.238188468539573" constant="false"/>
+      <parameter id="kf_J13" value="0.0739792476979795" constant="false"/>
+      <parameter id="kr_J13" value="0.731770355527561" constant="false"/>
+      <parameter id="K1_J13" value="0.0719753752521344" constant="false"/>
+      <parameter id="K2_J13" value="0.432512934381201" constant="false"/>
+      <parameter id="kf_J14" value="0.690434935227564" constant="false"/>
+      <parameter id="kr_J14" value="0.87698399428929" constant="false"/>
+      <parameter id="K1_J14" value="0.29744810686705" constant="false"/>
+      <parameter id="K2_J14" value="0.339340397569834" constant="false"/>
+      <parameter id="kf_J15" value="0.461801999025185" constant="false"/>
+      <parameter id="kr_J15" value="0.110343786209572" constant="false"/>
+      <parameter id="K1_J15" value="0.377875008659134" constant="false"/>
+      <parameter id="K2_J15" value="0.831158286138375" constant="false"/>
+      <parameter id="kf_J16" value="0.832973236107518" constant="false"/>
+      <parameter id="kr_J16" value="0.768763601292322" constant="false"/>
+      <parameter id="K1_J16" value="0.196776365642335" constant="false"/>
+      <parameter id="K2_J16" value="0.506787895808038" constant="false"/>
+      <parameter id="kf_J17" value="0.267619821607899" constant="false"/>
+      <parameter id="kr_J17" value="0.0429715895011238" constant="false"/>
+      <parameter id="K1_J17" value="0.498259277356857" constant="false"/>
+      <parameter id="K2_J17" value="0.0157803223408379" constant="false"/>
+      <parameter id="kf_J18" value="0.013263184164527" constant="false"/>
+      <parameter id="kr_J18" value="0.990294241259686" constant="false"/>
+      <parameter id="K1_J18" value="0.145984187514601" constant="false"/>
+      <parameter id="K2_J18" value="0.76290558050683" constant="false"/>
+      <parameter id="kf_J19" value="0.0425759766269529" constant="false"/>
+      <parameter id="kr_J19" value="0.0350353682968174" constant="false"/>
+      <parameter id="K1_J19" value="0.441545623402058" constant="false"/>
+      <parameter id="K2_J19" value="0.763342338527358" constant="false"/>
+      <parameter id="kf_J20" value="0.539325519715321" constant="false"/>
+      <parameter id="kr_J20" value="0.0681055545832581" constant="false"/>
+      <parameter id="K1_J20" value="0.580057463992" constant="false"/>
+      <parameter id="K2_J20" value="0.419040465825206" constant="false"/>
+      <parameter id="kf_J21" value="0.774471543286975" constant="false"/>
+      <parameter id="kr_J21" value="0.690733575305551" constant="false"/>
+      <parameter id="K1_J21" value="0.465635201646101" constant="false"/>
+      <parameter id="K2_J21" value="0.195326562958724" constant="false"/>
+      <parameter id="kf_J22" value="0.637567502381589" constant="false"/>
+      <parameter id="kr_J22" value="0.855794862235733" constant="false"/>
+      <parameter id="K1_J22" value="0.12508424436563" constant="false"/>
+      <parameter id="K2_J22" value="0.0831130209281894" constant="false"/>
     </listOfParameters>
     <listOfReactions>
       <reaction id="r1" reversible="false">
@@ -107,8 +111,8 @@
           <speciesReference species="S_in" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S10" stoichiometry="1" constant="true"/>
-          <speciesReference species="S14" stoichiometry="1" constant="true"/>
+          <speciesReference species="S11" stoichiometry="1" constant="true"/>
+          <speciesReference species="S13" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -122,8 +126,8 @@
               <apply>
                 <times/>
                 <ci> kr_J1 </ci>
-                <ci> S10 </ci>
-                <ci> S14 </ci>
+                <ci> S11 </ci>
+                <ci> S13 </ci>
               </apply>
             </apply>
           </math>
@@ -131,13 +135,13 @@
       </reaction>
       <reaction id="r2" reversible="false">
         <listOfReactants>
-          <speciesReference species="S9" stoichiometry="1" constant="true"/>
+          <speciesReference species="S15" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="S_out" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S6"/>
+          <modifierSpeciesReference species="S4"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -145,7 +149,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S6 </ci>
+                <ci> S4 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -153,7 +157,7 @@
                     <apply>
                       <times/>
                       <ci> kf_J2 </ci>
-                      <ci> S9 </ci>
+                      <ci> S15 </ci>
                     </apply>
                     <ci> K1_J2 </ci>
                   </apply>
@@ -173,7 +177,7 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S9 </ci>
+                  <ci> S15 </ci>
                   <ci> K1_J2 </ci>
                 </apply>
                 <apply>
@@ -191,10 +195,10 @@
           <speciesReference species="S_out" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S9" stoichiometry="1" constant="true"/>
+          <speciesReference species="S15" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S3"/>
+          <modifierSpeciesReference species="S2"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -202,7 +206,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S3 </ci>
+                <ci> S2 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -219,7 +223,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J3 </ci>
-                      <ci> S9 </ci>
+                      <ci> S15 </ci>
                     </apply>
                     <ci> K1_J3 </ci>
                   </apply>
@@ -235,7 +239,7 @@
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S9 </ci>
+                  <ci> S15 </ci>
                   <ci> K1_J3 </ci>
                 </apply>
               </apply>
@@ -245,121 +249,10 @@
       </reaction>
       <reaction id="r4" reversible="false">
         <listOfReactants>
-          <speciesReference species="S1" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S9" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="S7"/>
-        </listOfModifiers>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> S7 </ci>
-                <apply>
-                  <minus/>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kf_J4 </ci>
-                      <ci> S1 </ci>
-                    </apply>
-                    <ci> K1_J4 </ci>
-                  </apply>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kr_J4 </ci>
-                      <ci> S9 </ci>
-                    </apply>
-                    <ci> K2_J4 </ci>
-                  </apply>
-                </apply>
-              </apply>
-              <apply>
-                <plus/>
-                <cn type="integer"> 1 </cn>
-                <apply>
-                  <divide/>
-                  <ci> S1 </ci>
-                  <ci> K1_J4 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> S9 </ci>
-                  <ci> K2_J4 </ci>
-                </apply>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r5" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S14" stoichiometry="1" constant="true"/>
           <speciesReference species="S10" stoichiometry="1" constant="true"/>
+          <speciesReference species="S14" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <minus/>
-              <apply>
-                <times/>
-                <ci> kf_J5 </ci>
-                <ci> S14 </ci>
-                <ci> S10 </ci>
-              </apply>
-              <apply>
-                <times/>
-                <ci> kr_J5 </ci>
-                <ci> S13 </ci>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r6" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
-          <speciesReference species="S12" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <minus/>
-              <apply>
-                <times/>
-                <ci> kf_J6 </ci>
-                <ci> S13 </ci>
-                <ci> S12 </ci>
-              </apply>
-              <apply>
-                <times/>
-                <ci> kr_J6 </ci>
-                <ci> S11 </ci>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r7" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S12" stoichiometry="1" constant="true"/>
           <speciesReference species="S15" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <kineticLaw>
@@ -368,14 +261,124 @@
               <minus/>
               <apply>
                 <times/>
-                <ci> kf_J7 </ci>
+                <ci> kf_J4 </ci>
+                <ci> S10 </ci>
+                <ci> S14 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kr_J4 </ci>
+                <ci> S15 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r5" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S13" stoichiometry="1" constant="true"/>
+          <speciesReference species="S11" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf_J5 </ci>
+                <ci> S13 </ci>
                 <ci> S11 </ci>
               </apply>
               <apply>
                 <times/>
-                <ci> kr_J7 </ci>
+                <ci> kr_J5 </ci>
                 <ci> S12 </ci>
-                <ci> S15 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S7" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S12 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J6 </ci>
+                      <ci> S7 </ci>
+                    </apply>
+                    <ci> K1_J6 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J6 </ci>
+                      <ci> S12 </ci>
+                    </apply>
+                    <ci> K2_J6 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S7 </ci>
+                  <ci> K1_J6 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S12 </ci>
+                  <ci> K2_J6 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r7" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S14" stoichiometry="1" constant="true"/>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> kf_J7 </ci>
+                <ci> S14 </ci>
+                <ci> S12 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> kr_J7 </ci>
+                <ci> S10 </ci>
+                <ci> S12 </ci>
               </apply>
             </apply>
           </math>
@@ -386,10 +389,10 @@
           <speciesReference species="S8" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S12"/>
+          <modifierSpeciesReference species="S9"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -397,7 +400,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S12 </ci>
+                <ci> S9 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -414,7 +417,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J8 </ci>
-                      <ci> S13 </ci>
+                      <ci> S12 </ci>
                     </apply>
                     <ci> K2_J8 </ci>
                   </apply>
@@ -430,7 +433,7 @@
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S13 </ci>
+                  <ci> S12 </ci>
                   <ci> K2_J8 </ci>
                 </apply>
               </apply>
@@ -440,7 +443,64 @@
       </reaction>
       <reaction id="r9" reversible="false">
         <listOfReactants>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S7" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="S9"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S9 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J9 </ci>
+                      <ci> S12 </ci>
+                    </apply>
+                    <ci> K1_J9 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J9 </ci>
+                      <ci> S7 </ci>
+                    </apply>
+                    <ci> K2_J9 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S12 </ci>
+                  <ci> K1_J9 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S7 </ci>
+                  <ci> K2_J9 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r10" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S7" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="S12" stoichiometry="1" constant="true"/>
@@ -458,65 +518,8 @@
                     <divide/>
                     <apply>
                       <times/>
-                      <ci> kf_J9 </ci>
-                      <ci> S13 </ci>
-                    </apply>
-                    <ci> K1_J9 </ci>
-                  </apply>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kr_J9 </ci>
-                      <ci> S12 </ci>
-                    </apply>
-                    <ci> K2_J9 </ci>
-                  </apply>
-                </apply>
-              </apply>
-              <apply>
-                <plus/>
-                <cn type="integer"> 1 </cn>
-                <apply>
-                  <divide/>
-                  <ci> S13 </ci>
-                  <ci> K1_J9 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> S12 </ci>
-                  <ci> K2_J9 </ci>
-                </apply>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r10" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S12" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="S15"/>
-        </listOfModifiers>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> S15 </ci>
-                <apply>
-                  <minus/>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
                       <ci> kf_J10 </ci>
-                      <ci> S12 </ci>
+                      <ci> S7 </ci>
                     </apply>
                     <ci> K1_J10 </ci>
                   </apply>
@@ -525,7 +528,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J10 </ci>
-                      <ci> S13 </ci>
+                      <ci> S12 </ci>
                     </apply>
                     <ci> K2_J10 </ci>
                   </apply>
@@ -536,12 +539,12 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S12 </ci>
+                  <ci> S7 </ci>
                   <ci> K1_J10 </ci>
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S13 </ci>
+                  <ci> S12 </ci>
                   <ci> K2_J10 </ci>
                 </apply>
               </apply>
@@ -551,21 +554,18 @@
       </reaction>
       <reaction id="r11" reversible="false">
         <listOfReactants>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
+          <speciesReference species="S12" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="S8" stoichiometry="1" constant="true"/>
         </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="S15"/>
-        </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <divide/>
               <apply>
                 <times/>
-                <ci> S15 </ci>
+                <ci> S12 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -573,7 +573,7 @@
                     <apply>
                       <times/>
                       <ci> kf_J11 </ci>
-                      <ci> S13 </ci>
+                      <ci> S12 </ci>
                     </apply>
                     <ci> K1_J11 </ci>
                   </apply>
@@ -593,7 +593,7 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S13 </ci>
+                  <ci> S12 </ci>
                   <ci> K1_J11 </ci>
                 </apply>
                 <apply>
@@ -608,288 +608,10 @@
       </reaction>
       <reaction id="r12" reversible="false">
         <listOfReactants>
-          <speciesReference species="S13" stoichiometry="1" constant="true"/>
-          <speciesReference species="S4" stoichiometry="1" constant="true"/>
+          <speciesReference species="S1" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-          <speciesReference species="S15" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <minus/>
-              <apply>
-                <times/>
-                <ci> kf_J12 </ci>
-                <ci> S13 </ci>
-                <ci> S4 </ci>
-              </apply>
-              <apply>
-                <times/>
-                <ci> kr_J12 </ci>
-                <ci> S11 </ci>
-                <ci> S15 </ci>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r13" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S15" stoichiometry="1" constant="true"/>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <minus/>
-              <apply>
-                <times/>
-                <ci> kf_J13 </ci>
-                <ci> S15 </ci>
-                <ci> S11 </ci>
-              </apply>
-              <apply>
-                <times/>
-                <ci> kr_J13 </ci>
-                <ci> S11 </ci>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r14" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S7" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="S4"/>
-        </listOfModifiers>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> S4 </ci>
-                <apply>
-                  <minus/>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kf_J14 </ci>
-                      <ci> S7 </ci>
-                    </apply>
-                    <ci> K1_J14 </ci>
-                  </apply>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kr_J14 </ci>
-                      <ci> S11 </ci>
-                    </apply>
-                    <ci> K2_J14 </ci>
-                  </apply>
-                </apply>
-              </apply>
-              <apply>
-                <plus/>
-                <cn type="integer"> 1 </cn>
-                <apply>
-                  <divide/>
-                  <ci> S7 </ci>
-                  <ci> K1_J14 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> S11 </ci>
-                  <ci> K2_J14 </ci>
-                </apply>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r15" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S5" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <listOfModifiers>
-          <modifierSpeciesReference species="S4"/>
-        </listOfModifiers>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> S4 </ci>
-                <apply>
-                  <minus/>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kf_J15 </ci>
-                      <ci> S11 </ci>
-                    </apply>
-                    <ci> K1_J15 </ci>
-                  </apply>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kr_J15 </ci>
-                      <ci> S5 </ci>
-                    </apply>
-                    <ci> K2_J15 </ci>
-                  </apply>
-                </apply>
-              </apply>
-              <apply>
-                <plus/>
-                <cn type="integer"> 1 </cn>
-                <apply>
-                  <divide/>
-                  <ci> S11 </ci>
-                  <ci> K1_J15 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> S5 </ci>
-                  <ci> K2_J15 </ci>
-                </apply>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r16" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S5" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> S11 </ci>
-                <apply>
-                  <minus/>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kf_J16 </ci>
-                      <ci> S5 </ci>
-                    </apply>
-                    <ci> K1_J16 </ci>
-                  </apply>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kr_J16 </ci>
-                      <ci> S11 </ci>
-                    </apply>
-                    <ci> K2_J16 </ci>
-                  </apply>
-                </apply>
-              </apply>
-              <apply>
-                <plus/>
-                <cn type="integer"> 1 </cn>
-                <apply>
-                  <divide/>
-                  <ci> S5 </ci>
-                  <ci> K1_J16 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> S11 </ci>
-                  <ci> K2_J16 </ci>
-                </apply>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r17" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S7" stoichiometry="1" constant="true"/>
-        </listOfProducts>
-        <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-              <divide/>
-              <apply>
-                <times/>
-                <ci> S11 </ci>
-                <apply>
-                  <minus/>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kf_J17 </ci>
-                      <ci> S11 </ci>
-                    </apply>
-                    <ci> K1_J17 </ci>
-                  </apply>
-                  <apply>
-                    <divide/>
-                    <apply>
-                      <times/>
-                      <ci> kr_J17 </ci>
-                      <ci> S7 </ci>
-                    </apply>
-                    <ci> K2_J17 </ci>
-                  </apply>
-                </apply>
-              </apply>
-              <apply>
-                <plus/>
-                <cn type="integer"> 1 </cn>
-                <apply>
-                  <divide/>
-                  <ci> S11 </ci>
-                  <ci> K1_J17 </ci>
-                </apply>
-                <apply>
-                  <divide/>
-                  <ci> S7 </ci>
-                  <ci> K2_J17 </ci>
-                </apply>
-              </apply>
-            </apply>
-          </math>
-        </kineticLaw>
-      </reaction>
-      <reaction id="r18" reversible="false">
-        <listOfReactants>
-          <speciesReference species="S11" stoichiometry="1" constant="true"/>
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="S2" stoichiometry="1" constant="true"/>
+          <speciesReference species="S3" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
           <modifierSpeciesReference species="S7"/>
@@ -907,8 +629,347 @@
                     <divide/>
                     <apply>
                       <times/>
+                      <ci> kf_J12 </ci>
+                      <ci> S1 </ci>
+                    </apply>
+                    <ci> K1_J12 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J12 </ci>
+                      <ci> S3 </ci>
+                    </apply>
+                    <ci> K2_J12 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S1 </ci>
+                  <ci> K1_J12 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S3 </ci>
+                  <ci> K2_J12 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r13" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S14" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="S7"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S7 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J13 </ci>
+                      <ci> S3 </ci>
+                    </apply>
+                    <ci> K1_J13 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J13 </ci>
+                      <ci> S14 </ci>
+                    </apply>
+                    <ci> K2_J13 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S3 </ci>
+                  <ci> K1_J13 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S14 </ci>
+                  <ci> K2_J13 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r14" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S14" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S3" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="S8"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S8 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J14 </ci>
+                      <ci> S14 </ci>
+                    </apply>
+                    <ci> K1_J14 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J14 </ci>
+                      <ci> S3 </ci>
+                    </apply>
+                    <ci> K2_J14 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S14 </ci>
+                  <ci> K1_J14 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S3 </ci>
+                  <ci> K2_J14 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r15" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S3" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S1" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="S8"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S8 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J15 </ci>
+                      <ci> S3 </ci>
+                    </apply>
+                    <ci> K1_J15 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J15 </ci>
+                      <ci> S1 </ci>
+                    </apply>
+                    <ci> K2_J15 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S3 </ci>
+                  <ci> K1_J15 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S1 </ci>
+                  <ci> K2_J15 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r16" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S6" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S10 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J16 </ci>
+                      <ci> S10 </ci>
+                    </apply>
+                    <ci> K1_J16 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J16 </ci>
+                      <ci> S6 </ci>
+                    </apply>
+                    <ci> K2_J16 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S10 </ci>
+                  <ci> K1_J16 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S6 </ci>
+                  <ci> K2_J16 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r17" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S6" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="S14"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S14 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kf_J17 </ci>
+                      <ci> S6 </ci>
+                    </apply>
+                    <ci> K2_J17 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> kr_J17 </ci>
+                      <ci> S10 </ci>
+                    </apply>
+                    <ci> K1_J17 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> S6 </ci>
+                  <ci> K2_J17 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> S10 </ci>
+                  <ci> K1_J17 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="r18" reversible="false">
+        <listOfReactants>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="S5" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="S6"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> S6 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
                       <ci> kf_J18 </ci>
-                      <ci> S11 </ci>
+                      <ci> S10 </ci>
                     </apply>
                     <ci> K1_J18 </ci>
                   </apply>
@@ -917,7 +978,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J18 </ci>
-                      <ci> S2 </ci>
+                      <ci> S5 </ci>
                     </apply>
                     <ci> K2_J18 </ci>
                   </apply>
@@ -928,12 +989,12 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S11 </ci>
+                  <ci> S10 </ci>
                   <ci> K1_J18 </ci>
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S2 </ci>
+                  <ci> S5 </ci>
                   <ci> K2_J18 </ci>
                 </apply>
               </apply>
@@ -946,10 +1007,10 @@
           <speciesReference species="S3" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S15" stoichiometry="1" constant="true"/>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S2"/>
+          <modifierSpeciesReference species="S12"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -957,7 +1018,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S2 </ci>
+                <ci> S12 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -974,7 +1035,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J19 </ci>
-                      <ci> S15 </ci>
+                      <ci> S10 </ci>
                     </apply>
                     <ci> K2_J19 </ci>
                   </apply>
@@ -990,7 +1051,7 @@
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S15 </ci>
+                  <ci> S10 </ci>
                   <ci> K2_J19 </ci>
                 </apply>
               </apply>
@@ -1000,13 +1061,13 @@
       </reaction>
       <reaction id="r20" reversible="false">
         <listOfReactants>
-          <speciesReference species="S15" stoichiometry="1" constant="true"/>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S6" stoichiometry="1" constant="true"/>
+          <speciesReference species="S9" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S2"/>
+          <modifierSpeciesReference species="S12"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1014,7 +1075,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S2 </ci>
+                <ci> S12 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -1022,7 +1083,7 @@
                     <apply>
                       <times/>
                       <ci> kf_J20 </ci>
-                      <ci> S15 </ci>
+                      <ci> S10 </ci>
                     </apply>
                     <ci> K1_J20 </ci>
                   </apply>
@@ -1031,7 +1092,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J20 </ci>
-                      <ci> S6 </ci>
+                      <ci> S9 </ci>
                     </apply>
                     <ci> K2_J20 </ci>
                   </apply>
@@ -1042,12 +1103,12 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S15 </ci>
+                  <ci> S10 </ci>
                   <ci> K1_J20 </ci>
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S6 </ci>
+                  <ci> S9 </ci>
                   <ci> K2_J20 </ci>
                 </apply>
               </apply>
@@ -1057,13 +1118,13 @@
       </reaction>
       <reaction id="r21" reversible="false">
         <listOfReactants>
-          <speciesReference species="S6" stoichiometry="1" constant="true"/>
+          <speciesReference species="S9" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
-          <speciesReference species="S15" stoichiometry="1" constant="true"/>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S4"/>
+          <modifierSpeciesReference species="S5"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1071,7 +1132,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S4 </ci>
+                <ci> S5 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -1079,7 +1140,7 @@
                     <apply>
                       <times/>
                       <ci> kf_J21 </ci>
-                      <ci> S6 </ci>
+                      <ci> S9 </ci>
                     </apply>
                     <ci> K1_J21 </ci>
                   </apply>
@@ -1088,7 +1149,7 @@
                     <apply>
                       <times/>
                       <ci> kr_J21 </ci>
-                      <ci> S15 </ci>
+                      <ci> S10 </ci>
                     </apply>
                     <ci> K2_J21 </ci>
                   </apply>
@@ -1099,12 +1160,12 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S6 </ci>
+                  <ci> S9 </ci>
                   <ci> K1_J21 </ci>
                 </apply>
                 <apply>
                   <divide/>
-                  <ci> S15 </ci>
+                  <ci> S10 </ci>
                   <ci> K2_J21 </ci>
                 </apply>
               </apply>
@@ -1114,13 +1175,13 @@
       </reaction>
       <reaction id="r22" reversible="false">
         <listOfReactants>
-          <speciesReference species="S15" stoichiometry="1" constant="true"/>
+          <speciesReference species="S10" stoichiometry="1" constant="true"/>
         </listOfReactants>
         <listOfProducts>
           <speciesReference species="S3" stoichiometry="1" constant="true"/>
         </listOfProducts>
         <listOfModifiers>
-          <modifierSpeciesReference species="S4"/>
+          <modifierSpeciesReference species="S5"/>
         </listOfModifiers>
         <kineticLaw>
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1128,7 +1189,7 @@
               <divide/>
               <apply>
                 <times/>
-                <ci> S4 </ci>
+                <ci> S5 </ci>
                 <apply>
                   <minus/>
                   <apply>
@@ -1136,7 +1197,7 @@
                     <apply>
                       <times/>
                       <ci> kf_J22 </ci>
-                      <ci> S15 </ci>
+                      <ci> S10 </ci>
                     </apply>
                     <ci> K1_J22 </ci>
                   </apply>
@@ -1156,7 +1217,7 @@
                 <cn type="integer"> 1 </cn>
                 <apply>
                   <divide/>
-                  <ci> S15 </ci>
+                  <ci> S10 </ci>
                   <ci> K1_J22 </ci>
                 </apply>
                 <apply>
