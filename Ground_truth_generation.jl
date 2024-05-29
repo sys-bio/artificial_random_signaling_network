@@ -9,31 +9,40 @@ using StatsBase # random pick reaction by weight
 #using Suppressor
 RoadRunner.disableLoggingToConsole() # try to disable some warnings like NLEQ
 
-# number of floating species
+################## adjusting parameters for biological applications  ########################
+# number of species
 global nSpecies = 15
 # this number excludes the input and output species but includes nSpecies_gene
 #Therefore, the total number of species should be (nSpecies+2)
 
-# maximum number of reactions
+# number of reactions
 global nRxns = 22
 
 # number of gene species
 global nSpecies_gene = 9
-# some restrictions:s
-# (nSpecies-nSpecies_gene) >= 4 for the case of BIBI
+# some restrictions:
 # nSpecies >= 5 for the case of double catalyzation
 # nSpecies >= 13: 6 to initiate input and output reactions + next input and output layer 7
+# (nSpecies-nSpecies_gene) >= 4 for the case of BIBI
 
 # random values assignment
-# random number generation for species concentration [0,10)
-rnd_species = 10.
-# random number generation for parameters [0,1)
-rnd_parameter = 1.
-# doubling the concentration at the input species.
+# random generation for species concentration in the range of [rnd_species_initial, rnd_species_initial + rnd_species_range)
+global rnd_species_initial = 0.
+global rnd_species_range = 10.
+# random generation for parameters in the range of [rnd_parameter_initial, rnd_parameter_initial + rnd_parameter_range)
+global rnd_parameter_initial = 0.
+global rnd_parameter_range = 1.
+
+# used to set the factor that perturbs the concentration at the input species, i.e., doubling the concentration at the input species.
 concentration_perturb = 2.
+
+# the probability of the reaction motifs in the order of  ["UNICAT", "UNIBI", "BIUNI", "BIBI", "CIRCLE", "DBCIRCLE"] with the sum as 1
+RXN_MECH_WEIGHT_VALUE = [0.2, 0.2, 0.2, 0.2, 0.1, 0.1]
+
 # number of sampleNetwork.xml to generate
 sampleSize = 1
 # i.e. sampleNetwork-1.xml, sampleNetwork-2.xml
+###############################################################################################
 
 RoadRunner.setConfigBool("ROADRUNNER_DISABLE_WARNINGS", 1)
 function rv_specs(ids_species, ids_rv)
@@ -49,7 +58,7 @@ function randomNetwork(nSpecies, nSpecies_gene, nRxns)
     INPUT_RXN_MECH = ["UNICAT", "UNIBI", "BIUNI", "BIBI"]
     INPUT_RXN_MECH_WEIGHT = [0.25, 0.25, 0.25, 0.25]
     RXN_MECH = ["UNICAT", "UNIBI", "BIUNI", "BIBI", "CIRCLE", "DBCIRCLE"]
-    RXN_MECH_WEIGHT = [0.2, 0.2, 0.2, 0.2, 0.1, 0.1]
+    RXN_MECH_WEIGHT = RXN_MECH_WEIGHT_VALUE
     GN_RXN_MECH = ["UNICAT", "CIRCLE", "DBCIRCLE"]
     GN_RXN_MECH_WEIGHT = [0.25, 0.33, 0.42]
 
@@ -997,13 +1006,13 @@ tim=@elapsed begin # @elapsed returns time in second
             nSpecies_floating = RoadRunner.getNumberOfFloatingSpecies(rr_real)
             #assign random values to spieces and parameters
             for i = 0:(nSpecies_floating-1)
-                RoadRunner.setFloatingSpeciesInitialConcentrationByIndex(rr_real, i, rnd_species*rand()) # random number [0,1)
+                RoadRunner.setFloatingSpeciesInitialConcentrationByIndex(rr_real, i, (rnd_species_initial + rnd_species_range*rand()))
             end
             for i = 0:(nSpecies_boundary-1)
-                RoadRunner.setBoundarySpeciesByIndex(rr_real, i, rnd_species*rand())
+                RoadRunner.setBoundarySpeciesByIndex(rr_real, i, (rnd_species_initial + rnd_species_range*rand()))
             end
             for i = 0:(P_num-1)
-                RoadRunner.setGlobalParameterByIndex(rr_real, i, rnd_parameter*rand())
+                RoadRunner.setGlobalParameterByIndex(rr_real, i, (rnd_parameter_initial + rnd_parameter_range*rand()))
             end
 
 			neg_c = negativeConcentration(rr_real)
