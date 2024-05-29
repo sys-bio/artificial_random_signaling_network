@@ -1,12 +1,10 @@
-# This script was written by Jin Xu and available on Github
-# https://github.com/SunnyXu/artificial_random_signaling_network
-
 #import libsbml
 #print(libsbml.LIBSBML_VERSION)
 
 from libsbml import *
-import os
 import math
+import matplotlib.pyplot as plt
+import zipfile
 
 def getSymbols(kinetic_law):
   """
@@ -44,12 +42,19 @@ def getSymbols(kinetic_law):
     result = [ast_node.getName()]
   return augment(ast_node, result)
 
-files = os.listdir('.')
-files.remove('degree_dist.py')
+#files = os.listdir('.')
+#files.remove('degree_dist.py')
 #files.remove('degree_dist.txt')
 #files = ['feedback.xml']
-xml_num = len(files)
-#print(files)
+
+with zipfile.ZipFile('Biomodels.zip') as zip_file:
+    zip_file.extractall()
+
+with zipfile.ZipFile('Biomodels.zip') as zip_file:
+  file_list = zip_file.namelist()
+  file_list.remove('Biomodels/')
+  xml_num = len(file_list)
+  files = file_list
 
 reaction_num_list = []
 species_num_list = []
@@ -215,3 +220,24 @@ else:
       file.write('\n')
 
   file.close()
+
+  #dist_list_len = len(degree_dist_list_avg)
+  dist_list_len = 26
+
+  x = []
+  for i in range(dist_list_len):
+    x.append(i)
+
+  y = degree_dist_list_avg[:dist_list_len]
+  e = degree_dist_list_sdv[:dist_list_len]
+
+  fig, ax = plt.subplots(figsize = (7, 5))
+  ax.errorbar(x, y, yerr=e, fmt="o", c='b', marker="o", label='Biomodels')
+  plt.legend(loc='upper right')
+
+  ax.set_xlabel('Reaction degree')
+  ax.set_ylabel('Probability')
+  ax.set_title('Reaction degree distribution')
+
+  plt.savefig("Degree_Distribution.pdf", format="pdf")
+  plt.show()

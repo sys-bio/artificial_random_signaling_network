@@ -8,6 +8,8 @@
 from libsbml import *
 from collections import OrderedDict
 import math
+import matplotlib.pyplot as plt
+import zipfile
 
 def getSymbols(kinetic_law):
   global cur_depth
@@ -47,12 +49,20 @@ def common_specs(a, b):
     else:
         return 0
 
-files = os.listdir('.')
-files.remove('distance_dist.py')
+#files = os.listdir('.')
+#files.remove('distance_dist.py')
 #files.remove('distance_dist.txt')
 #files = ['feedback.xml']
-xml_num = len(files)
-#print(files)
+
+    
+with zipfile.ZipFile('synthetic_networks.zip') as zip_file:
+    zip_file.extractall()
+
+with zipfile.ZipFile('synthetic_networks.zip') as zip_file:
+  file_list = zip_file.namelist()
+  file_list.remove('synthetic_networks/')
+  xml_num = len(file_list)
+  files = file_list
 
 distance_dist_list = []
 xml_real_num = 0
@@ -277,6 +287,27 @@ else:
       file.write('\n')
 
   file.close()
+
+  #dist_list_len = len(degree_dist_list_avg)
+  dist_list_len = 11
+
+  x = []
+  for i in range(dist_list_len):
+    x.append(i)
+
+  y = distance_dist_list_avg[:dist_list_len]
+  e = distance_dist_list_sdv[:dist_list_len]
+
+  fig, ax = plt.subplots(figsize = (7, 5))
+  ax.errorbar(x, y, yerr=e, fmt="o", c='r', marker="s", label='Synthetic networks')
+  plt.legend(loc='upper right')
+
+  ax.set_xlabel('Reaction distance')
+  ax.set_ylabel('Probability')
+  ax.set_title('Reaction distance distribution')
+
+  plt.savefig("Distance_Distribution.pdf", format="pdf")
+  plt.show()
 
 
 
