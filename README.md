@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The artificial_random_signaling_network Github repo provides a Julia script to generate artificial 
+The artificial_random_signaling_network GitHub repo provides a Julia script to generate artificial 
 random signaling networks with adjustable parameters, and also provides topological analysis by Python scripts. 
 
 ## Citing
